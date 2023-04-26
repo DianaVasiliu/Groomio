@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { SafeAreaView, Text, TextInput, View, Button } from "react-native";
 import { updateUsername } from "../../redux/actions/user";
 import { styles } from "./styles";
+import { useTranslation } from "react-i18next";
 
 const ProfileScreen = () => {
+    const { t } = useTranslation();
     const [newUsername, setNewUsername] = useState("");
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
@@ -16,6 +18,7 @@ const ProfileScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <Text>Welcome to {t("app-name")}!</Text>
             <Text>Welcome {user.username}</Text>
 
             <View>

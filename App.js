@@ -7,6 +7,8 @@ import { NativeBaseProvider } from "native-base";
 
 import ProfileScreen from "./src/screens/Profile";
 
+import "./src/translation/config.js";
+
 export default function App() {
     return (
         <Provider store={store}>
