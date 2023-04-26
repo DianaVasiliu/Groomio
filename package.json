@@ -1,25 +1,27 @@
 {
-  "name": "groomio",
-  "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "prepare": "husky install"
-  },
-  "dependencies": {
-    "@react-native-community/eslint-config": "^3.2.0",
-    "eslint": "^8.39.0",
-    "expo": "~48.0.15",
-    "expo-status-bar": "~1.4.4",
-    "react": "18.2.0",
-    "react-native": "0.71.7"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "husky": "^8.0.0"
-  },
-  "private": true
+    "name": "groomio",
+    "version": "1.0.0",
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+        "start": "expo start",
+        "android": "expo start --android",
+        "ios": "expo start --ios",
+        "web": "expo start --web",
+        "prepare": "husky install",
+        "lint": "prettier --check .",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "@react-native-community/eslint-config": "^3.2.0",
+        "eslint": "^8.39.0",
+        "expo": "~48.0.15",
+        "expo-status-bar": "~1.4.4",
+        "react": "18.2.0",
+        "react-native": "0.71.7"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.20.0",
+        "husky": "^8.0.0"
+    },
+    "private": true
 }
