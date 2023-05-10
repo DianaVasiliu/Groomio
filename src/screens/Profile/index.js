@@ -5,7 +5,7 @@ import { updateUsername } from "../../redux/actions/user";
 import { styles } from "./styles";
 import { useTranslation } from "react-i18next";
 
-const ProfileScreen = () => {
+const Profile = () => {
     const { t } = useTranslation();
     const [newUsername, setNewUsername] = useState("");
     const dispatch = useDispatch();
@@ -35,4 +35,4 @@ const ProfileScreen = () => {
     );
 };
 
-export default ProfileScreen;
+export default Profile;

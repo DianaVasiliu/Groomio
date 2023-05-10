@@ -4,8 +4,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/redux";
 import { NativeBaseProvider } from "native-base";
-
-import ProfileScreen from "./src/screens/Profile";
+import Navigator from "./src/navigation";
 
 import "./src/translation/config.js";
 
@@ -14,9 +13,7 @@ export default function App() {
         <Provider store={store}>
             <PersistGate persistor={persistor}>
                 <NativeBaseProvider>
-                    <SafeAreaView>
-                        <ProfileScreen />
-                    </SafeAreaView>
+                    <Navigator />
                 </NativeBaseProvider>
             </PersistGate>
         </Provider>
