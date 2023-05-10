@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Community, Home, Map, MyPets, QuickInfo } from "../../screens";
+import { Map, QuickInfo } from "../../screens";
 import {
     HomeFillIcon,
     HomeOutlineIcon,
@@ -14,10 +14,15 @@ import {
     PeopleOutlineIcon,
 } from "../../components/icons";
 import { colors } from "../../theme";
+import { CommunityNavigator } from "../community";
+import { HomeNavigator } from "../home";
+import { MyPetsNavigator } from "../myPets";
 
 const Tab = createBottomTabNavigator();
 
 export const MainNavigator = () => {
+    const hide = false;
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -28,10 +33,10 @@ export const MainNavigator = () => {
                 tabBarIcon: ({ focused, color }) => {
                     let Icon;
                     switch (route.name) {
-                        case "Home":
+                        case "HomeNav":
                             Icon = focused ? HomeFillIcon : HomeOutlineIcon;
                             break;
-                        case "Community":
+                        case "CommunityNav":
                             Icon = focused ? PeopleFillIcon : PeopleOutlineIcon;
                             break;
                         case "Map":
@@ -40,23 +45,27 @@ export const MainNavigator = () => {
                         case "QuickInfo":
                             Icon = focused ? InfoFillIcon : InfoOutlineIcon;
                             break;
-                        case "MyPets":
+                        case "MyPetsNav":
                             Icon = focused ? PawFillIcon : PawOutlineIcon;
                             break;
                         default:
-                            Icon = <></>;
+                            // eslint-disable-next-line react/no-unstable-nested-components
+                            Icon = () => <></>;
                     }
                     return <Icon color={color} />;
                 },
             })}>
             <Tab.Screen
-                name="Home"
-                component={Home}
-                options={{ tabBarLabel: "Home" }}
+                name="HomeNav"
+                component={HomeNavigator}
+                options={{
+                    tabBarLabel: "Home",
+                    tabBarStyle: { display: hide ? "none" : "flex" },
+                }}
             />
             <Tab.Screen
-                name="Community"
-                component={Community}
+                name="CommunityNav"
+                component={CommunityNavigator}
                 options={{ tabBarLabel: "Community" }}
             />
             <Tab.Screen
@@ -70,8 +79,8 @@ export const MainNavigator = () => {
                 options={{ tabBarLabel: "Quick Info" }}
             />
             <Tab.Screen
-                name="MyPets"
-                component={MyPets}
+                name="MyPetsNav"
+                component={MyPetsNavigator}
                 options={{ tabBarLabel: "My Pets" }}
             />
         </Tab.Navigator>
