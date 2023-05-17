@@ -14,6 +14,7 @@ export const MyPetsNavigator = ({ navigation, route }) => {
             navigation.setOptions({ tabBarStyle: { display: "flex" } });
         }
     }, [navigation, route]);
+
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="MyPets" component={MyPets} />

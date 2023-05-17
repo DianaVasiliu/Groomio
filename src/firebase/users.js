@@ -1,10 +1,17 @@
-import { addDoc, collection } from "firebase/firestore/lite";
+import { doc, getDoc, setDoc } from "firebase/firestore/lite";
 import { db } from "./config";
+import { COLLECTIONS } from "./utils/constants";
 
-const addUser = async username => {
-    const usersCol = collection(db, "users");
-    const docRef = await addDoc(usersCol, { username });
-    console.log("new user added", docRef);
+const addUser = async (id, data) => {
+    const userRef = doc(db, COLLECTIONS.USERS, id);
+    await setDoc(userRef, data);
 };
 
-export { addUser };
+const getUserById = async id => {
+    const userRef = doc(db, COLLECTIONS.USERS, id);
+    const userSnap = await getDoc(userRef);
+    const userData = userSnap.data();
+    return userData;
+};
+
+export { addUser, getUserById };

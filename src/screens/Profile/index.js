@@ -1,38 +1,38 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { SafeAreaView, Text, TextInput, View, Button } from "react-native";
-import { updateUsername } from "../../redux/actions/user";
-import { styles } from "./styles";
+import React from "react";
+import { SafeAreaView, Text, Button } from "react-native";
+import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { styles } from "./styles";
 
-const Profile = () => {
+import { logout as logoutAction } from "../../redux/actions/auth";
+
+const Profile = ({ user, logout }) => {
     const { t } = useTranslation();
-    const [newUsername, setNewUsername] = useState("");
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
 
-    const saveUsername = () => {
-        if (newUsername === "") return;
-        dispatch(updateUsername(newUsername));
+    const signout = () => {
+        logout();
     };
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Welcome to {t("app-name")}!</Text>
-            <Text>Welcome {user.username}</Text>
-
-            <View>
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={text => setNewUsername(text)}
-                    value={newUsername}
-                    placeholder="New Username"
-                    placeholderTextColor="white"
-                />
-                <Button title="Save" onPress={() => saveUsername()} />
-            </View>
+            <Text>
+                Welcome to {t("app-name")}, {user.email}!
+            </Text>
+            <Button title="Logout" onPress={signout} />
         </SafeAreaView>
     );
 };
 
-export default Profile;
+const mapStateToProps = state => {
+    return {
+        user: state.auth.currentUser,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(logoutAction()),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

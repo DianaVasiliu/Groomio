@@ -21,14 +21,12 @@ import { MyPetsNavigator } from "../myPets";
 const Tab = createBottomTabNavigator();
 
 export const MainNavigator = () => {
-    const hide = false;
-
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
-                tabBarActiveTintColor: colors.primary[100],
-                tabBarInactiveTintColor: "#aabbaa",
+                tabBarActiveTintColor: colors.primary[400],
+                tabBarInactiveTintColor: colors.grey[400],
                 // eslint-disable-next-line react/no-unstable-nested-components
                 tabBarIcon: ({ focused, color }) => {
                     let Icon;
@@ -58,10 +56,7 @@ export const MainNavigator = () => {
             <Tab.Screen
                 name="HomeNav"
                 component={HomeNavigator}
-                options={{
-                    tabBarLabel: "Home",
-                    tabBarStyle: { display: hide ? "none" : "flex" },
-                }}
+                options={{ tabBarLabel: "Home" }}
             />
             <Tab.Screen
                 name="CommunityNav"

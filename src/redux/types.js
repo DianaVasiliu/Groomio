@@ -1,3 +1,9 @@
 export const USER_ACTION_TYPES = {
     UPDATE_USERNAME: "UPDATE_USERNAME",
 };
+
+export const AUTH_ACTION_TYPES = {
+    SIGN_UP: "SIGN_UP",
+    LOGIN: "LOGIN",
+    LOGOUT: "LOGOUT",
+};

@@ -14,7 +14,7 @@ const Navigator = ({ user }) => {
 
 const mapStateToProps = state => {
     return {
-        user: state.user,
+        user: state.auth.currentUser,
     };
 };
 
