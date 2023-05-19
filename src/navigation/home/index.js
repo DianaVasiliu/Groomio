@@ -1,5 +1,9 @@
 import React, { useLayoutEffect } from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { Platform } from "react-native";
+import {
+    CardStyleInterpolators,
+    createStackNavigator,
+} from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 import { EditAccount, Home, Profile, Settings } from "../../screens";
@@ -24,7 +28,16 @@ export const HomeNavigator = ({ navigation, route }) => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={SCREENS.HOME} component={Home} />
-            <Stack.Screen name={SCREENS.PROFILE} component={Profile} />
+            <Stack.Screen
+                name={SCREENS.PROFILE}
+                component={Profile}
+                options={{
+                    cardStyleInterpolator:
+                        Platform.OS === "android"
+                            ? CardStyleInterpolators.forVerticalIOS
+                            : CardStyleInterpolators.forBottomSheetAndroid,
+                }}
+            />
             <Stack.Screen name={SCREENS.SETTINGS} component={Settings} />
             <Stack.Screen name={SCREENS.EDIT_ACCOUNT} component={EditAccount} />
         </Stack.Navigator>

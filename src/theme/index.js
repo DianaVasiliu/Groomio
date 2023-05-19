@@ -38,6 +38,8 @@ export const colors = {
         transparent: "#777777aa",
     },
     transparent: "transparent",
+    pink: "#ED91C4",
+    blue: "#69B4E0",
 };
 
 const theme = extendTheme({

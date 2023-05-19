@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { Input, View } from "native-base";
 
 import { colors } from "../../theme";
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         borderRadius: 1000,
     },
     input: {
-        height: 50,
+        height: Platform.OS === "android" ? 40 : 50,
         color: colors.black,
     },
 });

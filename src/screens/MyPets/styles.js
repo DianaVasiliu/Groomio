@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     },
     imageContainer: {
         position: "relative",
-        marginTop: -15,
+        marginTop: -30,
     },
     decoration: {
         position: "absolute",
@@ -55,5 +55,11 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
         color: colors.black,
         marginBottom: 10,
+    },
+    titleContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
+        zIndex: 3,
     },
 });

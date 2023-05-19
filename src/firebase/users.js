@@ -1,4 +1,10 @@
-import { doc, getDoc, setDoc } from "firebase/firestore/lite";
+import {
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    setDoc,
+} from "firebase/firestore/lite";
 import { db } from "./config";
 import { COLLECTIONS } from "./utils/constants";
 
@@ -11,7 +17,15 @@ const getUserById = async id => {
     const userRef = doc(db, COLLECTIONS.USERS, id);
     const userSnap = await getDoc(userRef);
     const userData = userSnap.data();
-    return userData;
+
+    const petsCollection = collection(userRef, COLLECTIONS.PETS);
+    const petsSnap = await getDocs(petsCollection);
+    const pets = [];
+    petsSnap.forEach(pet => pets.push(pet.data()));
+    return {
+        ...userData,
+        pets,
+    };
 };
 
 export { addUser, getUserById };

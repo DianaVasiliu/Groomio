@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { Pressable, Text, View } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 
@@ -20,7 +20,9 @@ const ScreenTitle = ({ title, hasBackButton }) => {
                     <BackArrowIcon color={colors.primary[800]} size={26} />
                 </Pressable>
             )}
-            <Text style={styles.title} fontSize={"3xl"}>
+            <Text
+                style={styles.title}
+                fontSize={Platform.OS === "android" ? "2xl" : "3xl"}>
                 {title}
             </Text>
         </View>
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         gap: 20,
-        paddingHorizontal: 30,
+        paddingLeft: 30,
         paddingVertical: 15,
     },
     backButton: {

@@ -1,25 +1,35 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { Image, Text, View } from "native-base";
+import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
 import {
     CustomTextInput,
     ScreenTitle,
     PetCategoryCarousel,
+    AddButton,
 } from "../../components/small";
 import SafeAreaScreen from "../SafeAreaScreen";
 import { styles } from "./styles";
 import { colors } from "../../theme";
 import { SearchIcon } from "../../components/icons";
 import { IMAGES } from "../../utils/images";
+import { SCREENS } from "../../utils/constants";
+import { PetCarousel } from "../../components/large/PetCarousel";
 
 const MyPets = () => {
     const { t } = useTranslation();
+    const navigation = useNavigation();
     const petPawsBackground = IMAGES.PAWS_BACKGROUND;
 
     return (
         <SafeAreaScreen>
-            <ScreenTitle title={t("my-pets")} />
+            <View style={styles.titleContainer}>
+                <ScreenTitle title={t("my-pets")} />
+                <AddButton
+                    onPress={() => navigation.navigate(SCREENS.ADD_PET)}
+                />
+            </View>
             <View style={styles.imageContainer}>
                 <Image
                     source={petPawsBackground}
@@ -54,6 +64,8 @@ const MyPets = () => {
                 {t("categories")}
             </Text>
             <PetCategoryCarousel />
+
+            <PetCarousel />
         </SafeAreaScreen>
     );
 };
