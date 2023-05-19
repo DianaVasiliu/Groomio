@@ -31,21 +31,19 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",
-        gap: 15,
+        gap: 20,
         paddingHorizontal: 30,
         paddingVertical: 15,
     },
     backButton: {
-        width: 50,
-        height: 50,
+        width: 45,
+        height: 45,
         backgroundColor: colors.grey[100],
         borderRadius: 100,
         alignItems: "center",
         justifyContent: "center",
     },
-    title: {
-        fontWeight: "bold",
-    },
+    title: {},
 });
 
 export default ScreenTitle;

@@ -1,0 +1,18 @@
+{
+    "app-name": "Groomio",
+    "home": "Home",
+    "community": "Community",
+    "map": "Map",
+    "quick-info": "Quick Info",
+    "my-pets": "My Pets",
+    "search": "Search",
+    "find-your-pet": "Find your pet",
+    "dogs": "Dogs",
+    "cats": "Cats",
+    "birds": "Birds",
+    "fish": "Fish",
+    "reptiles": "Reptiles",
+    "rodents": "Rodents",
+    "other": "Other",
+    "categories": "Categories"
+}

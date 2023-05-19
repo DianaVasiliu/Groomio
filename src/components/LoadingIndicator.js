@@ -4,10 +4,11 @@ import { Modal, View } from "native-base";
 import LottieView from "lottie-react-native";
 
 import { colors } from "../theme";
+import { ANIMATIONS } from "../utils/images";
 
 const LoadingIndicator = ({ isLoading }) => {
     const animationRef = useRef(null);
-    const animationData = require("../../assets/animations/running-dog.json");
+    const animationData = ANIMATIONS.DOG_WALKING;
 
     useEffect(() => {
         if (animationRef.current) {
@@ -38,7 +39,10 @@ const LoadingIndicator = ({ isLoading }) => {
 };
 
 const styles = StyleSheet.create({
-    modalContent: { backgroundColor: "transparent", elevation: 0 },
+    modalContent: {
+        backgroundColor: colors.transparent,
+        elevation: 0,
+    },
     animation: { height: 90 },
     container: {
         backgroundColor: colors.white,

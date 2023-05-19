@@ -11,6 +11,7 @@ import InfoFillIcon from "./InfoFillIcon";
 import InfoOutlineIcon from "./InfoOutlineIcon";
 import PawFillIcon from "./PawFillIcon";
 import PawOutlineIcon from "./PawOutlineIcon";
+import SearchIcon from "./SearchIcon";
 
 export {
     BackArrowIcon,
@@ -26,4 +27,5 @@ export {
     InfoOutlineIcon,
     PawFillIcon,
     PawOutlineIcon,
+    SearchIcon,
 };
