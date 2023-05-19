@@ -1,19 +1,19 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-import { styles } from "./styles";
+import { Text, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Button } from "react-native";
+
+import SafeAreaScreen from "../SafeAreaScreen";
 
 const Community = () => {
     const navigation = useNavigation();
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaScreen>
             <Text>Community</Text>
             <Button
-                title="ToMyPosts"
+                title="To My Posts"
                 onPress={() => navigation.navigate("MyPosts")}
             />
-        </SafeAreaView>
+        </SafeAreaScreen>
     );
 };
 

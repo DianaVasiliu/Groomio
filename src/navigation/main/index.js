@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useTranslation } from "react-i18next";
 import { Map, QuickInfo } from "../../screens";
 import {
     HomeFillIcon,
@@ -17,10 +18,13 @@ import { colors } from "../../theme";
 import { CommunityNavigator } from "../community";
 import { HomeNavigator } from "../home";
 import { MyPetsNavigator } from "../myPets";
+import { SCREENS } from "../../utils/constants";
 
 const Tab = createBottomTabNavigator();
 
 export const MainNavigator = () => {
+    const { t } = useTranslation();
+
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -31,19 +35,19 @@ export const MainNavigator = () => {
                 tabBarIcon: ({ focused, color }) => {
                     let Icon;
                     switch (route.name) {
-                        case "HomeNav":
+                        case SCREENS.HOME_NAV:
                             Icon = focused ? HomeFillIcon : HomeOutlineIcon;
                             break;
-                        case "CommunityNav":
+                        case SCREENS.COMMUNITY_NAV:
                             Icon = focused ? PeopleFillIcon : PeopleOutlineIcon;
                             break;
-                        case "Map":
+                        case SCREENS.MAP:
                             Icon = focused ? MapFillIcon : MapOutlineIcon;
                             break;
-                        case "QuickInfo":
+                        case SCREENS.QUICK_INFO:
                             Icon = focused ? InfoFillIcon : InfoOutlineIcon;
                             break;
-                        case "MyPetsNav":
+                        case SCREENS.MY_PETS_NAV:
                             Icon = focused ? PawFillIcon : PawOutlineIcon;
                             break;
                         default:
@@ -54,29 +58,29 @@ export const MainNavigator = () => {
                 },
             })}>
             <Tab.Screen
-                name="HomeNav"
+                name={SCREENS.HOME_NAV}
                 component={HomeNavigator}
-                options={{ tabBarLabel: "Home" }}
+                options={{ tabBarLabel: t("home") }}
             />
             <Tab.Screen
-                name="CommunityNav"
+                name={SCREENS.COMMUNITY_NAV}
                 component={CommunityNavigator}
-                options={{ tabBarLabel: "Community" }}
+                options={{ tabBarLabel: t("community") }}
             />
             <Tab.Screen
-                name="Map"
+                name={SCREENS.MAP}
                 component={Map}
-                options={{ tabBarLabel: "Map" }}
+                options={{ tabBarLabel: t("map") }}
             />
             <Tab.Screen
-                name="QuickInfo"
+                name={SCREENS.QUICK_INFO}
                 component={QuickInfo}
-                options={{ tabBarLabel: "Quick Info" }}
+                options={{ tabBarLabel: t("quick-info") }}
             />
             <Tab.Screen
-                name="MyPetsNav"
+                name={SCREENS.MY_PETS_NAV}
                 component={MyPetsNavigator}
-                options={{ tabBarLabel: "My Pets" }}
+                options={{ tabBarLabel: t("my-pets") }}
             />
         </Tab.Navigator>
     );

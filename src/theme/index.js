@@ -35,7 +35,11 @@ export const colors = {
         700: "#555555",
         800: "#555555",
         900: "#555555",
+        transparent: "#777777aa",
     },
+    transparent: "transparent",
+    pink: "#ED91C4",
+    blue: "#69B4E0",
 };
 
 const theme = extendTheme({
