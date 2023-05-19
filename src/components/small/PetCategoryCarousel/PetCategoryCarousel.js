@@ -4,7 +4,7 @@ import { ScrollView } from "native-base";
 import { useTranslation } from "react-i18next";
 
 import PetCategoryItem from "./PetCategoryItem";
-import { IMAGES } from "../../utils/images";
+import { IMAGES } from "../../../utils/images";
 
 const PetCategoryCarousel = props => {
     const { t } = useTranslation();
@@ -23,7 +23,7 @@ const PetCategoryCarousel = props => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.container}>
                 {items.map(({ image, name }) => (
-                    <PetCategoryItem image={image} name={name} />
+                    <PetCategoryItem image={image} name={name} key={name} />
                 ))}
             </View>
         </ScrollView>

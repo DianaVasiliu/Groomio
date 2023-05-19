@@ -2,12 +2,12 @@ import React from "react";
 import { StyleSheet, Platform } from "react-native";
 import { Image, Pressable, Text, View } from "native-base";
 
-import { colors } from "../../theme";
+import { colors } from "../../../theme";
 
-const PetCategoryItem = ({ image, name }) => {
+const PetCategoryItem = ({ image, name, onPress = () => {} }) => {
     return (
         <View>
-            <Pressable style={styles.container}>
+            <Pressable style={styles.container} onPress={onPress}>
                 <Image source={image} alt="Item" style={styles.image} />
             </Pressable>
             <Text style={styles.text}>{name}</Text>
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     image: {
-        height: Platform.OS === "android" ? 50 : 60,
-        width: Platform.OS === "android" ? 50 : 60,
+        height: Platform.OS === "android" ? 40 : 50,
+        width: Platform.OS === "android" ? 40 : 50,
     },
     text: {
         textAlign: "center",

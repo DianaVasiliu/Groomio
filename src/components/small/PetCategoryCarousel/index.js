@@ -1,3 +1,3 @@
 import PetCategoryCarousel from "./PetCategoryCarousel";
 
-export { PetCategoryCarousel };
+export default PetCategoryCarousel;

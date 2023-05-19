@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Text } from "react-native";
 import { Button } from "native-base";
 
-import { LoadingIndicator } from "../../components";
+import { LoadingIndicator } from "../../components/small";
 import { login } from "../../redux/actions/auth";
 import SafeAreaScreen from "../SafeAreaScreen";
 

@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 import { Pressable, Text, View } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 
-import { colors } from "../theme";
-import { BackArrowIcon } from "./icons";
+import { colors } from "../../theme";
+import { BackArrowIcon } from "../icons";
 
 const ScreenTitle = ({ title, hasBackButton }) => {
     const navigation = useNavigation();

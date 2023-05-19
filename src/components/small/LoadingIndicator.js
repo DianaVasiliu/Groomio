@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 import { Modal, View } from "native-base";
 import LottieView from "lottie-react-native";
 
-import { colors } from "../theme";
-import { ANIMATIONS } from "../utils/images";
+import { colors } from "../../theme";
+import { ANIMATIONS } from "../../utils/images";
 
 const LoadingIndicator = ({ isLoading }) => {
     const animationRef = useRef(null);

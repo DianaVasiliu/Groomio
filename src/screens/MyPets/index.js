@@ -2,13 +2,16 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Image, Text, View } from "native-base";
 
-import { CustomTextInput, ScreenTitle } from "../../components";
+import {
+    CustomTextInput,
+    ScreenTitle,
+    PetCategoryCarousel,
+} from "../../components/small";
 import SafeAreaScreen from "../SafeAreaScreen";
 import { styles } from "./styles";
 import { colors } from "../../theme";
 import { SearchIcon } from "../../components/icons";
 import { IMAGES } from "../../utils/images";
-import { PetCategoryCarousel } from "../../components/PetCategoryCarousel";
 
 const MyPets = () => {
     const { t } = useTranslation();

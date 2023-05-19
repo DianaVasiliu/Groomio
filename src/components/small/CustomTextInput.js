@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Input, View } from "native-base";
 
-import { colors } from "../theme";
+import { colors } from "../../theme";
 
 const CustomTextInput = ({
     placeholder,
