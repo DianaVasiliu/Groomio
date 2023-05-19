@@ -1,12 +1,13 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-import { styles } from "./styles";
+
+import { ScreenTitle } from "../../components";
+import SafeAreaScreen from "../SafeAreaScreen";
 
 const MyPets = () => {
     return (
-        <SafeAreaView style={styles.container}>
-            <Text>MyPets</Text>
-        </SafeAreaView>
+        <SafeAreaScreen>
+            <ScreenTitle title={"My pets"} hasBackButton />
+        </SafeAreaScreen>
     );
 };
 

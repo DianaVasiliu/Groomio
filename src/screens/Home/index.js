@@ -1,19 +1,20 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { Text } from "react-native";
 import { Button } from "native-base";
-import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+
+import SafeAreaScreen from "../SafeAreaScreen";
 
 const Home = () => {
     const navigation = useNavigation();
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaScreen>
             <Text>Home</Text>
 
             <Button onPress={() => navigation.navigate("Profile")}>
                 Go to profile
             </Button>
-        </SafeAreaView>
+        </SafeAreaScreen>
     );
 };
 

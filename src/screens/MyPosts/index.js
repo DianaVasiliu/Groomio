@@ -1,12 +1,13 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-import { styles } from "./styles";
+import { Text } from "react-native";
+
+import SafeAreaScreen from "../SafeAreaScreen";
 
 const MyPosts = () => {
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaScreen>
             <Text>MyPosts</Text>
-        </SafeAreaView>
+        </SafeAreaScreen>
     );
 };
 

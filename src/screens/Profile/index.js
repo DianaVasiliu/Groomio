@@ -1,10 +1,10 @@
 import React from "react";
-import { SafeAreaView, Text, Button } from "react-native";
+import { Text, Button } from "react-native";
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { styles } from "./styles";
 
 import { logout as logoutAction } from "../../redux/actions/auth";
+import SafeAreaScreen from "../SafeAreaScreen";
 
 const Profile = ({ user, logout }) => {
     const { t } = useTranslation();
@@ -14,12 +14,12 @@ const Profile = ({ user, logout }) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaScreen>
             <Text>
                 Welcome to {t("app-name")}, {user.email}!
             </Text>
             <Button title="Logout" onPress={signout} />
-        </SafeAreaView>
+        </SafeAreaScreen>
     );
 };
 

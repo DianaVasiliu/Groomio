@@ -1,3 +1,4 @@
+import BackArrowIcon from "./BackArrowIcon";
 import ProfileFillIcon from "./ProfileFillIcon";
 import ProfileOutlineIcon from "./ProfileOutlineIcon";
 import HomeFillIcon from "./HomeFillIcon";
@@ -12,6 +13,7 @@ import PawFillIcon from "./PawFillIcon";
 import PawOutlineIcon from "./PawOutlineIcon";
 
 export {
+    BackArrowIcon,
     ProfileFillIcon,
     ProfileOutlineIcon,
     HomeFillIcon,
