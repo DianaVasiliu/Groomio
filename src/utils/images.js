@@ -6,7 +6,9 @@ const DOG = require("../../assets/images/pet-icons/dog.png");
 const FISH = require("../../assets/images/pet-icons/fish.png");
 const OTHER = require("../../assets/images/pet-icons/other.png");
 const TURTLE = require("../../assets/images/pet-icons/turtle.png");
+
 const DOG_WALKING = require("../../assets/animations/running-dog.json");
+const SAD_CAT = require("../../assets/animations/sad-cat.json");
 
 export const IMAGES = {
     PAWS_BACKGROUND,
@@ -23,4 +25,5 @@ export const IMAGES = {
 
 export const ANIMATIONS = {
     DOG_WALKING,
+    SAD_CAT,
 };

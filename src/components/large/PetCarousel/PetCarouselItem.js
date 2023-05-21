@@ -14,8 +14,9 @@ const PetCarouselItem = ({ item, width, hasShadow }) => {
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
                 ...carouselItemStyles.container,
-                width: width,
-                elevation: hasShadow ? 15 : 0,
+                width,
+                elevation: hasShadow ? 5 : 0,
+                shadowOpacity: hasShadow ? 0.3 : 0,
             }}>
             <Image
                 source={{ uri: item.photoUrl }}
