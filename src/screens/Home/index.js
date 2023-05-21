@@ -7,6 +7,7 @@ import SafeAreaScreen from "../SafeAreaScreen";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
+import { connect } from "react-redux";
 
 const Places = [
     {
@@ -112,7 +113,7 @@ const SectionTitle = styled.Text`
     margin-bottom: 7px;
 `;
 
-const Home = () => {
+const Home = ({ appointments }) => {
     const navigation = useNavigation();
     return (
         <SafeAreaScreen>
@@ -139,7 +140,9 @@ const Home = () => {
                             <AppointmentText> Next appointment</AppointmentText>
                         </View>
                         <AppointmentDetailsText>
-                            9:00 • Thursday • 12 May
+                            {appointments && appointments.length
+                                ? "Appoitments"
+                                : "No appointments yet"}
                         </AppointmentDetailsText>
                     </Appointments>
                     <Calendar
@@ -229,4 +232,10 @@ const Home = () => {
     );
 };
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        appointments: state.user.appointments,
+    };
+};
+
+export default connect(mapStateToProps)(Home);
