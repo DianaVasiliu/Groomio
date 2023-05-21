@@ -1,11 +1,11 @@
 import { USER_ACTION_TYPES } from "../types";
-import { addUser } from "../../firebase/users";
+import { addPetToCurrentUser } from "../../firebase/users";
 
-export const updateUsername = username => async dispatch => {
-    await addUser(username);
+export const addPet = petInfo => async dispatch => {
+    await addPetToCurrentUser(petInfo);
 
     dispatch({
-        type: USER_ACTION_TYPES.UPDATE_USERNAME,
-        payload: username,
+        type: USER_ACTION_TYPES.ADD_PET,
+        payload: petInfo,
     });
 };

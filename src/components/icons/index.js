@@ -1,4 +1,7 @@
 import BackArrowIcon from "./BackArrowIcon";
+import CalendarIcon from "./CalendarIcon";
+import CheckIcon from "./CheckIcon";
+import DownArrowIcon from "./DownArrowIcon";
 import FemaleSymbolIcon from "./FemaleSymbolIcon";
 import HomeFillIcon from "./HomeFillIcon";
 import HomeOutlineIcon from "./HomeOutlineIcon";
@@ -21,6 +24,9 @@ import ViewGridIcon from "./ViewGridIcon";
 
 export {
     BackArrowIcon,
+    CalendarIcon,
+    CheckIcon,
+    DownArrowIcon,
     FemaleSymbolIcon,
     HomeFillIcon,
     HomeOutlineIcon,

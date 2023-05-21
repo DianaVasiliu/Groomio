@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
 import { Animated } from "react-native";
 import { FlatList, Text, View } from "native-base";
 import {
@@ -100,10 +99,17 @@ const PetCarousel = ({ data }) => {
                                     inputRange,
                                     outputRange: [0.9, 1, 1.2],
                                 });
-                                const opacity = scrollXAnimated.interpolate({
-                                    inputRange,
-                                    outputRange: [1 - 1 / VISIBLE_ITEMS, 1, 0],
-                                });
+                                const opacity =
+                                    i >= index
+                                        ? 1
+                                        : scrollXAnimated.interpolate({
+                                              inputRange,
+                                              outputRange: [
+                                                  1 - 1 / VISIBLE_ITEMS,
+                                                  1,
+                                                  0,
+                                              ],
+                                          });
 
                                 return (
                                     <Animated.View
