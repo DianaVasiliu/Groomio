@@ -1,4 +1,4 @@
-import LoadingIndicator from "./LoadingIndicator";
+import LoadingIndicator from "./animations/LoadingIndicator";
 import ScreenTitle from "./ScreenTitle";
 import CustomTextInput from "./CustomTextInput";
 import PetCategoryCarousel from "./PetCategoryCarousel";

@@ -15,5 +15,7 @@
     "rodents": "Rodents",
     "other": "Other",
     "categories": "Categories",
-    "of": "of"
+    "of": "of",
+    "not-found": "Not found",
+    "no-pets-found": "Sorry, no pets found"
 }

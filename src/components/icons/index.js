@@ -15,6 +15,9 @@ import PlusIcon from "./PlusIcon";
 import ProfileFillIcon from "./ProfileFillIcon";
 import ProfileOutlineIcon from "./ProfileOutlineIcon";
 import SearchIcon from "./SearchIcon";
+import UpArrowIcon from "./UpArrowIcon";
+import ViewCarouselIcon from "./ViewCarouselIcon";
+import ViewGridIcon from "./ViewGridIcon";
 
 export {
     BackArrowIcon,
@@ -34,4 +37,7 @@ export {
     ProfileFillIcon,
     ProfileOutlineIcon,
     SearchIcon,
+    UpArrowIcon,
+    ViewCarouselIcon,
+    ViewGridIcon,
 };

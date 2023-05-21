@@ -22,9 +22,8 @@ export const carouselItemStyles = StyleSheet.create({
         borderRadius: 20,
         padding: 20,
         shadowColor: colors.grey[900],
-        shadowOffset: { height: 9, width: 0 },
+        shadowOffset: { height: 5, width: 0 },
         shadowRadius: 5,
-        shadowOpacity: 0.3,
     },
     image: {
         height: 250,
