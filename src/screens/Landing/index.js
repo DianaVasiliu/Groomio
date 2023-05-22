@@ -18,7 +18,7 @@ const Title = styled.Text`
 const Button = styled.TouchableOpacity`
     width: 85%;
     background-color: black;
-    border-radius: 100%;
+    border-radius: 100px;
     padding: 14px;
     margin-vertical: 5px;
 `;

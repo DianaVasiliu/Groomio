@@ -7,10 +7,10 @@ import { ANIMATIONS } from "../../../utils/images";
 
 const PetCaring = () => {
     const animationRef = useRef(null);
-    const animationData = ANIMATIONS.PET_CARING;
+    const animationData = ANIMATIONS.DOG_WALKING;
 
     useEffect(() => {
-        if (animationRef.current) {
+        if (animationRef?.current) {
             setTimeout(() => {
                 animationRef.current?.reset();
                 animationRef.current?.play();

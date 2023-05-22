@@ -22,12 +22,7 @@ export const styles = StyleSheet.create({
 
     inputContainer: { width: "90%" },
 
-    input: {
-        paddingHorizontal: 15,
-        paddingVertical: 15,
-        borderRadius: 20,
-        marginTop: 15,
-    },
+    input: {},
 
     buttonContainer: {
         width: "100%",
