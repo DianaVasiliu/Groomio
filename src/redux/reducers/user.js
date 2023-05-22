@@ -2,6 +2,7 @@ import { USER_ACTION_TYPES } from "../types";
 
 const initialState = {
     username: "",
+    appointments: [],
 };
 
 export const userReducer = (state = initialState, action) => {
