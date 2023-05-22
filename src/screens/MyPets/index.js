@@ -47,7 +47,7 @@ const MyPets = ({ pets }) => {
     useEffect(() => {
         filterBySearchText();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchText, oldSelectedCategory, pets]);
+    }, [searchText, oldSelectedCategory, pets, pets.length]);
 
     const filterBySearchText = () => {
         let newPets =
@@ -180,7 +180,7 @@ const MyPets = ({ pets }) => {
 
 const mapStateToProps = state => {
     return {
-        pets: state.auth.currentUser.pets,
+        pets: state.user.pets,
     };
 };
 

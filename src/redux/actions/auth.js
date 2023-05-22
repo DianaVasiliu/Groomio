@@ -1,4 +1,4 @@
-import { AUTH_ACTION_TYPES } from "../types";
+import { AUTH_ACTION_TYPES, USER_ACTION_TYPES } from "../types";
 import {
     loginWithEmailAndPassword,
     logOut,
@@ -16,10 +16,17 @@ export const signup = (email, password, otherFields) => async dispatch => {
 
 export const login = (email, password) => async dispatch => {
     const user = await loginWithEmailAndPassword(email, password);
+    const pets = user.pets;
+    delete user.pets;
 
     dispatch({
         type: AUTH_ACTION_TYPES.LOGIN,
         payload: user,
+    });
+
+    dispatch({
+        type: USER_ACTION_TYPES.POPULATE_PETS,
+        payload: pets,
     });
 };
 

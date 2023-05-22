@@ -16,7 +16,7 @@ const PetGrid = ({ data }) => {
     return (
         <View style={styles.container}>
             <FlatList
-                data={[...data, ...data, ...data, ...data]}
+                data={data}
                 numColumns={1}
                 keyExtractor={(_, i) => i.toString()}
                 scrollEnabled={false}

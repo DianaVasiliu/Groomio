@@ -1,5 +1,6 @@
 export const USER_ACTION_TYPES = {
-    UPDATE_USERNAME: "UPDATE_USERNAME",
+    ADD_PET: "ADD_PET",
+    POPULATE_PETS: "POPULATE_PETS",
 };
 
 export const AUTH_ACTION_TYPES = {

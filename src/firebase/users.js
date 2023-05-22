@@ -1,11 +1,12 @@
 import {
+    addDoc,
     collection,
     doc,
     getDoc,
     getDocs,
     setDoc,
 } from "firebase/firestore/lite";
-import { db } from "./config";
+import { auth, db } from "./config";
 import { COLLECTIONS } from "./utils/constants";
 
 const addUser = async (id, data) => {
@@ -28,4 +29,11 @@ const getUserById = async id => {
     };
 };
 
-export { addUser, getUserById };
+const addPetToCurrentUser = async petInfo => {
+    const id = auth.currentUser.uid;
+    const userRef = doc(db, COLLECTIONS.USERS, id);
+    const petsCollection = collection(userRef, COLLECTIONS.PETS);
+    await addDoc(petsCollection, petInfo);
+};
+
+export { addUser, getUserById, addPetToCurrentUser };
