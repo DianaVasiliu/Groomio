@@ -7,8 +7,7 @@ import { MainNavigator } from "./main";
 const Navigator = ({ user }) => {
     return (
         <NavigationContainer>
-            {/* {user ? <MainNavigator /> : <AuthenticationNavigator />} */}
-            <MainNavigator />
+            {user ? <MainNavigator /> : <AuthenticationNavigator />}
         </NavigationContainer>
     );
 };

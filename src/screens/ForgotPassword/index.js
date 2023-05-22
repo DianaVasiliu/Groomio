@@ -1,18 +1,13 @@
 import React from "react";
 import { Text } from "react-native";
 
-import {
-    StyleSheet,
-    View,
-    KeyboardAvoidingView,
-    TextInput,
-    Image,
-} from "react-native";
+import { View, KeyboardAvoidingView, Image } from "react-native";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
 import Logo from "../../../assets/icon.png";
 import { styles } from "./styles";
+import { CustomTextInput } from "../../components/small";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
@@ -24,10 +19,10 @@ const ForgotPassword = () => {
             <Text style={styles.title}>Forgot Password?</Text>
 
             <View style={styles.inputContainer}>
-                <TextInput
+                <CustomTextInput
                     placeholder="Email"
                     value={email}
-                    onChangeText={text => setEmail(text)}
+                    onChangeText={setEmail}
                     style={styles.input}
                 />
             </View>

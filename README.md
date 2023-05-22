@@ -3,8 +3,8 @@
 ## Resources
 
 1. [NativeBase](https://docs.nativebase.io/?utm_source=HomePage&utm_medium=header&utm_campaign=NativeBase_3)
-3. [Icons](https://icons.expo.fyi/)
-2. [Expo docs](https://docs.expo.dev/)
+2. [Icons](https://icons.expo.fyi/)
+3. [Expo docs](https://docs.expo.dev/)
 4. [Figma Prototype](https://www.figma.com/file/LdgjbDda9rPAHgV6AFwLQo/Pet-caring-app?type=design&node-id=0-1&t=2M2Xj0WKJro53Z1i-0)
 5. [Firebase Project](https://console.firebase.google.com/u/0/project/groomio-36697/overview)
 6. [Trello board](https://trello.com/b/dakdZwvB/groomio)
@@ -34,7 +34,7 @@ npx expo start
 
 ## 💻 Code linting
 
-To use the linter, run 
+To use the linter, run
 
 ```
 npm run lint:fix
@@ -51,7 +51,7 @@ In an `action`, you will find calls of functions that interact with Firebase and
 ### How to add a new Redux flow
 
 1. Add a new type in `/src/redux/types.js`. These are plain objects that help the reducer identify the action.
-2. Create a new file in `/src/redux/reducers/` and copy-paste a reducer from another file. 
+2. Create a new file in `/src/redux/reducers/` and copy-paste a reducer from another file.
 3. Rename this reducer and update the `initialState` with the fields you want to store.
 4. For each `case` statement, return the new state you want
     - you must populate every field that you find in the `initialState`
@@ -61,12 +61,12 @@ In an `action`, you will find calls of functions that interact with Firebase and
 6. Create a new file in `/src/redux/actions/`. Here, you will write all your `actions` for a specific entity. These actions will:
     - call a function that interacts with Firebase (you will implement this)
     - call `dispatch` to trigger the `reducer`. The `dispatch` function MUST HAVE a `type` field (which is defined by you at step 1) and CAN HAVE a `payload` field. The `type` field is necessary for identifying which `case` statement to choose from the reducer.
-8. Write your Firebase functions in a new file that you create in `/src/firebase`. See the Firebase V9 docs to learn about their API.
-9. You can now call your Firebase function in the action written before.
-10. Go to your component where you want to call your `action`.
-11. At the bottom of the file, create `mapStateToProps` (this will take your state variables and make them available through props) and `mapDispatchToProps` (this will take your `actions` and make them available through props).
-12. Use `connect` when exporting the component (see example in another file).
-13. Now you can use the variables as props (either state variables or `actions`).
+7. Write your Firebase functions in a new file that you create in `/src/firebase`. See the Firebase V9 docs to learn about their API.
+8. You can now call your Firebase function in the action written before.
+9. Go to your component where you want to call your `action`.
+10. At the bottom of the file, create `mapStateToProps` (this will take your state variables and make them available through props) and `mapDispatchToProps` (this will take your `actions` and make them available through props).
+11. Use `connect` when exporting the component (see example in another file).
+12. Now you can use the variables as props (either state variables or `actions`).
 
 Please be careful when naming your functions in the `mapDispatchToProps`. If you name them the same as the `action` you import, you might get an infinite recursive call. To avoid this, just name the function something different.
 

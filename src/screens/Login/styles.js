@@ -25,22 +25,18 @@ export const styles = StyleSheet.create({
         fontWeight: 500,
         fontSize: 14,
         marginTop: 35,
+        textAlign: "center",
     },
 
-    inputContainer: { width: "80%" },
+    inputContainer: { width: "90%", gap: 10 },
 
     input: {
         backgroundColor: "white",
-        paddingHorizontal: 15,
-        paddingVertical: 15,
-        borderRadius: 20,
-        marginTop: 15,
     },
 
     buttonContainer: {
-        width: "60%",
+        width: "90%",
         justifyContent: "center",
-        alignItems: "center",
         marginTop: 40,
     },
 
@@ -48,7 +44,9 @@ export const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: "#A3C7F1",
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 100,
+        alignItems: "center",
+        alignSelf: "center",
     },
 
     buttonOutline: {

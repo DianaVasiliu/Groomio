@@ -4,7 +4,7 @@ import { Text } from "react-native";
 import { Button } from "native-base";
 import { styles } from "./styles";
 
-import { LoadingIndicator } from "../../components/small";
+import { CustomTextInput, LoadingIndicator } from "../../components/small";
 import { login } from "../../redux/actions/auth";
 import SafeAreaScreen from "../SafeAreaScreen";
 
@@ -18,6 +18,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Logo from "../../../assets/icon.png";
 import { useNavigation } from "@react-navigation/native";
+import { SCREENS } from "../../utils/constants";
 
 const Login = ({ logIn }) => {
     const navigation = useNavigation();
@@ -28,13 +29,18 @@ const Login = ({ logIn }) => {
     const loginUser = async () => {
         setLoading(true);
 
-        logIn(email, password).then(() => {
-            setLoading(false);
-        });
+        logIn(email, password)
+            .then(() => {
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
+            });
     };
 
     return (
         <KeyboardAvoidingView style={styles.container} behaviour="padding">
+            {loading && <LoadingIndicator isLoading={loading} />}
             {/* IMAGE VIEW */}
             <View>
                 <Image source={Logo} style={styles.logo} resizeMode="contain" />
@@ -42,13 +48,15 @@ const Login = ({ logIn }) => {
             <Text style={styles.title}>Welcome back!</Text>
             {/* FIELD VIEWS */}
             <View style={styles.inputContainer}>
-                <TextInput
+                <CustomTextInput
                     placeholder="Email"
                     value={email}
                     onChangeText={text => setEmail(text)}
                     style={styles.input}
+                    type="email"
+                    autoCapitalize="none"
                 />
-                <TextInput
+                <CustomTextInput
                     placeholder="Password"
                     value={password}
                     onChangeText={text => setPassword(text)}
@@ -57,7 +65,7 @@ const Login = ({ logIn }) => {
                 />
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate("ForgotPassword");
+                        navigation.navigate(SCREENS.FORGOT_PASSWORD);
                     }}>
                     <Text style={styles.simpleButtonText}>
                         Forgot password?
@@ -72,7 +80,7 @@ const Login = ({ logIn }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate("Signup");
+                        navigation.navigate(SCREENS.SIGNUP);
                     }}>
                     <Text style={styles.simpleText}>
                         Don't have an account?

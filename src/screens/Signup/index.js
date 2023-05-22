@@ -1,35 +1,39 @@
 import React from "react";
 import { Text } from "react-native";
-import { Button } from "native-base";
 import { connect } from "react-redux";
 
 import { styles } from "./styles";
 import { signup } from "../../redux/actions/auth";
 
-import {
-    StyleSheet,
-    View,
-    KeyboardAvoidingView,
-    TextInput,
-    Image,
-} from "react-native";
+import { View, KeyboardAvoidingView, TextInput, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
 import Logo from "../../../assets/icon.png";
 import { useNavigation } from "@react-navigation/native";
+import { SCREENS } from "../../utils/constants";
+import { CustomTextInput, LoadingIndicator } from "../../components/small";
 
 const Signup = ({ signUp }) => {
     const navigation = useNavigation();
+    const [loading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const createAccount = () => {
-        signUp(email, password);
+        setLoading(true);
+        signUp(email, password, { fullName: name })
+            .then(() => {
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
+            });
     };
 
     return (
         <KeyboardAvoidingView style={styles.container} behaviour="padding">
+            {loading && <LoadingIndicator isLoading={loading} />}
             {/* IMAGE VIEW */}
             <View>
                 <Image source={Logo} style={styles.logo} resizeMode="contain" />
@@ -37,19 +41,20 @@ const Signup = ({ signUp }) => {
             <Text style={styles.title}>Hello there!</Text>
             {/* FIELD VIEWS */}
             <View style={styles.inputContainer}>
-                <TextInput
+                <CustomTextInput
                     placeholder="Your Name"
                     value={name}
                     onChangeText={text => setName(text)}
                     style={styles.input}
                 />
-                <TextInput
+                <CustomTextInput
                     placeholder="Email"
                     value={email}
                     onChangeText={text => setEmail(text)}
                     style={styles.input}
+                    autoCapitalize="none"
                 />
-                <TextInput
+                <CustomTextInput
                     placeholder="Password"
                     value={password}
                     onChangeText={text => setPassword(text)}
@@ -72,7 +77,7 @@ const Signup = ({ signUp }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate("Login");
+                        navigation.navigate(SCREENS.LOGIN);
                     }}>
                     <Text style={styles.simpleText}>
                         Already have an account?

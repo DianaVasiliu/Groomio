@@ -20,10 +20,9 @@ export const styles = StyleSheet.create({
         fontSize: 32,
     },
 
-    inputContainer: { width: "80%" },
+    inputContainer: { width: "90%" },
 
     input: {
-        backgroundColor: "#EEEEEE",
         paddingHorizontal: 15,
         paddingVertical: 15,
         borderRadius: 20,
@@ -31,17 +30,18 @@ export const styles = StyleSheet.create({
     },
 
     buttonContainer: {
-        width: "60%",
+        width: "100%",
         justifyContent: "center",
-        alignItems: "center",
         marginTop: 40,
     },
 
     button: {
-        width: "100%",
+        width: "90%",
         backgroundColor: "#A3C7F1",
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 100,
+        alignSelf: "center",
+        alignItems: "center",
     },
 
     buttonOutline: {

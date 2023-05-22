@@ -7,6 +7,7 @@ import { NativeBaseProvider } from "native-base";
 import Navigator from "./src/navigation";
 
 import "./src/translation/config.js";
+import "./src/utils/images.js";
 
 LogBox.ignoreLogs([
     "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.",

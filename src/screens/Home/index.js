@@ -8,6 +8,11 @@ import SafeAreaScreen from "../SafeAreaScreen";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 import { connect } from "react-redux";
+import { SCREENS } from "../../utils/constants";
+import { IMAGES } from "../../utils/images";
+import { colors } from "../../theme";
+import { ProfileFillIcon } from "../../components/icons";
+import { styles } from "./styles";
 
 const Places = [
     {
@@ -106,6 +111,7 @@ const ProfilePicture = styled(Image)`
     border-radius: 50px;
     width: 60px;
     height: 60px;
+    background-color: ${colors.grey[100]};
 `;
 
 const SectionTitle = styled.Text`
@@ -113,7 +119,7 @@ const SectionTitle = styled.Text`
     margin-bottom: 7px;
 `;
 
-const Home = ({ appointments }) => {
+const Home = ({ currentUser, appointments }) => {
     const navigation = useNavigation();
     return (
         <SafeAreaScreen>
@@ -121,13 +127,24 @@ const Home = ({ appointments }) => {
                 <ProfileContainer>
                     <WelcomeContainer>
                         <WelcomeText>Welcome back,</WelcomeText>
-                        <Name>Emily White</Name>
+                        <Name>{currentUser.fullName}</Name>
                     </WelcomeContainer>
                     <TouchableOpacity
                         activeOpacity={0.7}
-                        onPress={() => navigation.navigate("Profile")}>
-                        <ProfilePicture
-                            source={require("../../../assets/images/home-images/Ellipse.png")}></ProfilePicture>
+                        onPress={() => navigation.navigate(SCREENS.PROFILE)}>
+                        {currentUser.profileUrl ? (
+                            <ProfilePicture
+                                source={{
+                                    uri: currentUser.profileUrl,
+                                }}></ProfilePicture>
+                        ) : (
+                            <View style={styles.profileNoPhotoContainer}>
+                                <ProfileFillIcon
+                                    color={colors.grey[900]}
+                                    size={24}
+                                />
+                            </View>
+                        )}
                     </TouchableOpacity>
                 </ProfileContainer>
                 <SectionTitle>Event updates</SectionTitle>
@@ -137,20 +154,20 @@ const Home = ({ appointments }) => {
                             <Image
                                 style={{ width: 25, height: 25 }}
                                 source={require("../../../assets/images/home-images/cat_footprint.png")}></Image>
-                            <AppointmentText> Next appointment</AppointmentText>
+                            <AppointmentText>Next appointment</AppointmentText>
                         </View>
                         <AppointmentDetailsText>
                             {appointments && appointments.length
-                                ? "Appoitments"
+                                ? "Appointments"
                                 : "No appointments yet"}
                         </AppointmentDetailsText>
                     </Appointments>
                     <Calendar
                         activeOpacity={0.7}
-                        onPress={() => navigation.navigate("Appointments")}>
+                        onPress={() => navigation.navigate(SCREENS.CALENDAR)}>
                         <Image
                             style={{ width: 50, height: 50 }}
-                            source={require("../../../assets/images/home-images/calendar.png")}></Image>
+                            source={IMAGES.CALENDAR_HOME}></Image>
                     </Calendar>
                 </GeneralContainer>
 
@@ -172,7 +189,7 @@ const Home = ({ appointments }) => {
                     <DevelopmentContainer>
                         <Image
                             style={{ width: 50, height: 50 }}
-                            source={require("../../../assets/images/home-images/resources.png")}></Image>
+                            source={IMAGES.RESOURCES_HOME}></Image>
                         <Text
                             style={{
                                 color: "white",
@@ -185,7 +202,7 @@ const Home = ({ appointments }) => {
                     <DevelopmentContainer>
                         <Image
                             style={{ width: 35, height: 35 }}
-                            source={require("../../../assets/images/home-images/dog.png")}></Image>
+                            source={IMAGES.DOG_HOME}></Image>
                         <Text
                             style={{
                                 color: "white",
@@ -224,7 +241,7 @@ const Home = ({ appointments }) => {
                         </View>
                         <Image
                             style={{ width: 100, height: 120 }}
-                            source={require("../../../assets/images/home-images/community.png")}></Image>
+                            source={IMAGES.COMMUNITY_HOME}></Image>
                     </CommunityContainer>
                 </GeneralContainer>
             </Container>
@@ -234,6 +251,7 @@ const Home = ({ appointments }) => {
 
 const mapStateToProps = state => {
     return {
+        currentUser: state.auth.currentUser,
         appointments: state.user.appointments,
     };
 };
