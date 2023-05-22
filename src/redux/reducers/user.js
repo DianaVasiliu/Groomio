@@ -2,6 +2,7 @@ import { USER_ACTION_TYPES } from "../types";
 
 const initialState = {
     pets: [],
+    appointments: [],
 };
 
 export const userReducer = (state = initialState, action) => {
