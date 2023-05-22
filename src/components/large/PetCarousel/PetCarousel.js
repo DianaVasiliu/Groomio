@@ -11,10 +11,11 @@ import {
 
 import { carouselItemStyles, carouselStyles } from "./styles";
 import PetCarouselItem from "./PetCarouselItem";
+import { NotFound } from "../../small/animations";
 
 const ITEM_WIDTH = 270;
 
-const PetCarousel = ({ pets }) => {
+const PetCarousel = ({ data }) => {
     const { t } = useTranslation();
     const [index, setIndex] = useState(0);
     const scrollXIndex = useRef(new Animated.Value(0)).current;
@@ -28,10 +29,19 @@ const PetCarousel = ({ pets }) => {
         }).start();
     });
 
+    useEffect(() => {
+        setActiveIndex(0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data]);
+
     const setActiveIndex = activeIndex => {
         setIndex(activeIndex);
         scrollXIndex.setValue(activeIndex);
     };
+
+    if (!data || data.length === 0) {
+        return <NotFound text={t("no-pets-found")} />;
+    }
 
     return (
         <View>
@@ -40,7 +50,7 @@ const PetCarousel = ({ pets }) => {
                 direction={Directions.LEFT}
                 onHandlerStateChange={e => {
                     if (e.nativeEvent.state === State.END) {
-                        if (index === pets.length - 1) return;
+                        if (index === data.length - 1) return;
                         setActiveIndex(index + 1);
                     }
                 }}>
@@ -55,7 +65,7 @@ const PetCarousel = ({ pets }) => {
                     }}>
                     <View style={carouselStyles.container}>
                         <FlatList
-                            data={pets}
+                            data={data}
                             keyExtractor={(_, i) => String(i)}
                             horizontal
                             inverted
@@ -72,7 +82,7 @@ const PetCarousel = ({ pets }) => {
                             }) => {
                                 const newStyle = [
                                     style,
-                                    { zIndex: pets.length - i },
+                                    { zIndex: data.length - i },
                                 ];
                                 return (
                                     <View style={newStyle} index={i} {...props}>
@@ -109,7 +119,7 @@ const PetCarousel = ({ pets }) => {
                                         <PetCarouselItem
                                             item={item}
                                             width={ITEM_WIDTH}
-                                            hasShadow={index === i}
+                                            hasShadow={i >= index}
                                         />
                                     </Animated.View>
                                 );
@@ -130,7 +140,7 @@ const PetCarousel = ({ pets }) => {
                 </Text>
                 <View style={carouselItemStyles.indexIndicator}>
                     <Text style={carouselItemStyles.indicatorText}>
-                        {pets.length}
+                        {data.length}
                     </Text>
                 </View>
             </View>
@@ -138,14 +148,4 @@ const PetCarousel = ({ pets }) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        pets: state.auth.currentUser.pets,
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PetCarousel);
+export default PetCarousel;

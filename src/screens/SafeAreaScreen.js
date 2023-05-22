@@ -4,13 +4,19 @@ import { ScrollView } from "native-base";
 
 import { colors } from "../theme";
 
-const SafeAreaScreen = ({ children }) => {
+const SafeAreaScreen = React.forwardRef(({ children, ...otherProps }, ref) => {
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>{children}</ScrollView>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                ref={ref}
+                onScroll={otherProps.onScroll ?? undefined}
+                scrollEventThrottle={80}>
+                {children}
+            </ScrollView>
         </SafeAreaView>
     );
-};
+});
 
 const styles = StyleSheet.create({
     container: {

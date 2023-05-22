@@ -7,6 +7,7 @@ import { colors } from "../../theme";
 const CustomTextInput = ({
     placeholder,
     type = "text",
+    onChangeText,
     startIconComponent,
     endIconComponent,
 }) => {
@@ -16,6 +17,7 @@ const CustomTextInput = ({
                 variant="rounded"
                 placeholder={placeholder}
                 type={type}
+                onChangeText={onChangeText}
                 InputLeftElement={startIconComponent}
                 InputRightElement={endIconComponent}
                 p={0}

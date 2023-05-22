@@ -4,10 +4,15 @@ import { Image, Pressable, Text, View } from "native-base";
 
 import { colors } from "../../../theme";
 
-const PetCategoryItem = ({ image, name, onPress = () => {} }) => {
+const PetCategoryItem = ({ item, selected, onPress = () => {} }) => {
+    const { image, name, type } = item;
+    const isSelected = type === selected;
+
     return (
         <View>
-            <Pressable style={styles.container} onPress={onPress}>
+            <Pressable
+                style={[styles.container, isSelected ? styles.selected : {}]}
+                onPress={onPress}>
                 <Image source={image} alt="Item" style={styles.image} />
             </Pressable>
             <Text style={styles.text}>{name}</Text>
@@ -30,6 +35,9 @@ const styles = StyleSheet.create({
     text: {
         textAlign: "center",
         color: colors.black,
+    },
+    selected: {
+        backgroundColor: colors.primary[900],
     },
 });
 
