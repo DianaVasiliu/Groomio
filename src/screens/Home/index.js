@@ -1,31 +1,29 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
-
+import { connect } from "react-redux";
+import { Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import styled from "styled-components/native";
+import { Image } from "expo-image";
 
 import SafeAreaScreen from "../SafeAreaScreen";
-
-import { TouchableOpacity } from "react-native-gesture-handler";
-import styled from "styled-components/native";
-import { connect } from "react-redux";
 import { SCREENS } from "../../utils/constants";
 import { IMAGES } from "../../utils/images";
 import { colors } from "../../theme";
-import { ProfileFillIcon } from "../../components/icons";
+import { PawFillIcon, ProfileFillIcon } from "../../components/icons";
 import { styles } from "./styles";
 
 const Places = [
     {
         title: "Pet Shops",
-        image: require("../../../assets/images/home-images/store.png"),
+        image: IMAGES.STORE_HOME,
     },
     {
         title: "Vets",
-        image: require("../../../assets/images/home-images/medicine.png"),
+        image: IMAGES.MEDICINE_HOME,
     },
     {
-        title: "Pet Friendly\n     Places",
-        image: require("../../../assets/images/home-images/petfriendly.png"),
+        title: "Pet Friendly Places",
+        image: IMAGES.PET_FRIENDLY_PLACES_HOME,
     },
 ];
 
@@ -67,27 +65,23 @@ const Calendar = styled.TouchableOpacity`
     padding: 15px;
     border-radius: 15px;
 `;
-
-const Place = styled.View`
-    padding: 20px;
-    background-color: #eeeeee;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-`;
 const PlaceTitle = styled.Text`
     color: grey;
     font-weight: bold;
     margin-top: 3px;
+    max-width: 80%;
+    text-align: center;
+    align-self: center;
 `;
-const DevelopmentContainer = styled.View`
+const DevelopmentContainer = styled.TouchableOpacity`
     background-color: black;
     padding-vertical: 16px;
     padding-horizontal: 14px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-radius: 20px;
+    border-radius: 15px;
+    gap: 10px;
 `;
 const CommunityContainer = styled.View`
     background-color: #eeeeee;
@@ -147,13 +141,15 @@ const Home = ({ currentUser, appointments }) => {
                         )}
                     </TouchableOpacity>
                 </ProfileContainer>
-                <SectionTitle>Event updates</SectionTitle>
                 <GeneralContainer>
                     <Appointments>
-                        <View style={{ flexDirection: "row" }}>
-                            <Image
-                                style={{ width: 25, height: 25 }}
-                                source={require("../../../assets/images/home-images/cat_footprint.png")}></Image>
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: 5,
+                            }}>
+                            <PawFillIcon size={20} color={colors.white} />
                             <AppointmentText>Next appointment</AppointmentText>
                         </View>
                         <AppointmentDetailsText>
@@ -172,21 +168,44 @@ const Home = ({ currentUser, appointments }) => {
                 </GeneralContainer>
 
                 <SectionTitle>Places</SectionTitle>
-                <GeneralContainer>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        width: "100%",
+                        justifyContent: "space-between",
+                        marginBottom: 20,
+                        gap: 30,
+                        flex: 1,
+                    }}>
                     {Places.map((place, id) => (
-                        <View key={id} style={{ alignItems: "center" }}>
-                            <Place>
+                        <View style={{ flex: 1 }} key={id}>
+                            <TouchableOpacity
+                                style={{
+                                    backgroundColor: colors.grey[100],
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    padding: 5,
+                                    borderRadius: 15,
+                                    aspectRatio: 1,
+                                }}
+                                onPress={() =>
+                                    navigation.navigate(SCREENS.MAP)
+                                }>
                                 <Image
-                                    style={{ width: 60, height: 60 }}
+                                    style={{
+                                        height: 70,
+                                        aspectRatio: 1,
+                                    }}
                                     source={place.image}></Image>
-                            </Place>
+                            </TouchableOpacity>
                             <PlaceTitle>{place.title}</PlaceTitle>
                         </View>
                     ))}
-                </GeneralContainer>
+                </View>
                 <SectionTitle>Development</SectionTitle>
                 <GeneralContainer>
-                    <DevelopmentContainer>
+                    <DevelopmentContainer
+                        onPress={() => navigation.navigate(SCREENS.QUICK_INFO)}>
                         <Image
                             style={{ width: 50, height: 50 }}
                             source={IMAGES.RESOURCES_HOME}></Image>
@@ -199,7 +218,8 @@ const Home = ({ currentUser, appointments }) => {
                             Resources
                         </Text>
                     </DevelopmentContainer>
-                    <DevelopmentContainer>
+                    <DevelopmentContainer
+                        onPress={() => navigation.navigate(SCREENS.QUICK_INFO)}>
                         <Image
                             style={{ width: 35, height: 35 }}
                             source={IMAGES.DOG_HOME}></Image>
@@ -228,7 +248,10 @@ const Home = ({ currentUser, appointments }) => {
                                     backgroundColor: "#679DDB",
                                     borderRadius: 10,
                                     marginTop: 10,
-                                }}>
+                                }}
+                                onPress={() =>
+                                    navigation.navigate(SCREENS.COMMUNITY_NAV)
+                                }>
                                 <Text
                                     style={{
                                         color: "white",

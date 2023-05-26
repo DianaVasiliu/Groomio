@@ -45,7 +45,7 @@ const CustomTextInput = ({
                     _focus={{ backgroundColor: colors.white }}
                     _input={{
                         selectionColor: colors.grey[400],
-                        paddingLeft: 5,
+                        paddingLeft: startIconComponent ? 0 : 5,
                         paddingRight: 5,
                         fontSize: 16,
                     }}

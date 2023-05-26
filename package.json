@@ -40,7 +40,8 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "yup": "^1.1.1",
-    "styled-components": "^5.3.10"
+    "styled-components": "^5.3.10",
+    "expo-image": "~1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

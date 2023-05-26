@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Platform } from "react-native";
-import { Image, Pressable, Text, View } from "native-base";
+import { Pressable, Text, View } from "native-base";
+import { Image } from "expo-image";
 
 import { colors } from "../../../theme";
 

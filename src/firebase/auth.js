@@ -24,18 +24,14 @@ const signupWithEmailAndPassword = async (email, password, otherFields) => {
 };
 
 const loginWithEmailAndPassword = async (email, password) => {
-    try {
-        const userCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password,
-        );
-        const { uid } = userCredential.user;
-        const dbUser = await getUserById(uid);
-        return dbUser;
-    } catch (error) {
-        console.error(error);
-    }
+    const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+    );
+    const { uid } = userCredential.user;
+    const dbUser = await getUserById(uid);
+    return dbUser;
 };
 
 const logOut = () => {

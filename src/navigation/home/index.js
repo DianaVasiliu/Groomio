@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
-import { EditAccount, Home, Profile, Settings } from "../../screens";
+import { Calendar, EditAccount, Home, Profile, Settings } from "../../screens";
 import { SCREENS } from "../../utils/constants";
 
 const Stack = createStackNavigator();
@@ -40,6 +40,7 @@ export const HomeNavigator = ({ navigation, route }) => {
             />
             <Stack.Screen name={SCREENS.SETTINGS} component={Settings} />
             <Stack.Screen name={SCREENS.EDIT_ACCOUNT} component={EditAccount} />
+            <Stack.Screen name={SCREENS.CALENDAR} component={Calendar} />
         </Stack.Navigator>
     );
 };

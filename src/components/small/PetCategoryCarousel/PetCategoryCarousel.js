@@ -24,18 +24,20 @@ const PetCategoryCarousel = ({ selected, onSelect }) => {
     ];
 
     return (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.container}>
-                {items.map(({ image, name, type }) => (
-                    <PetCategoryItem
-                        item={{ image, name, type }}
-                        key={name}
-                        onPress={() => onSelect(type)}
-                        selected={selected}
-                    />
-                ))}
-            </View>
-        </ScrollView>
+        <View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <View style={styles.container}>
+                    {items.map(({ image, name, type }) => (
+                        <PetCategoryItem
+                            item={{ image, name, type }}
+                            key={name}
+                            onPress={() => onSelect(type)}
+                            selected={selected}
+                        />
+                    ))}
+                </View>
+            </ScrollView>
+        </View>
     );
 };
 

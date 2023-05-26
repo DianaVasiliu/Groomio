@@ -7,7 +7,7 @@ import { ANIMATIONS } from "../../../utils/images";
 
 const PetCaring = () => {
     const animationRef = useRef(null);
-    const animationData = ANIMATIONS.DOG_WALKING;
+    const animationData = ANIMATIONS.PET_CARING;
 
     useEffect(() => {
         if (animationRef?.current) {
@@ -32,7 +32,7 @@ const PetCaring = () => {
 };
 
 const styles = StyleSheet.create({
-    animation: { width: "90%" },
+    animation: { width: "90%", marginVertical: 10 },
     container: { alignItems: "center" },
 });
 

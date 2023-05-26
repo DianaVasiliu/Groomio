@@ -10,6 +10,9 @@ const CALENDAR_HOME = require("../../assets/images/home-images/calendar.png");
 const RESOURCES_HOME = require("../../assets/images/home-images/resources.png");
 const DOG_HOME = require("../../assets/images/home-images/dog.png");
 const COMMUNITY_HOME = require("../../assets/images/home-images/community.png");
+const STORE_HOME = require("../../assets/images/home-images/store.png");
+const MEDICINE_HOME = require("../../assets/images/home-images/medicine.png");
+const PET_FRIENDLY_PLACES_HOME = require("../../assets/images/home-images/petfriendly.png");
 
 const DOG_WALKING = require("../../assets/animations/running-dog.json");
 const SAD_CAT = require("../../assets/animations/sad-cat.json");
@@ -21,6 +24,9 @@ export const IMAGES = {
     RESOURCES_HOME,
     DOG_HOME,
     COMMUNITY_HOME,
+    STORE_HOME,
+    MEDICINE_HOME,
+    PET_FRIENDLY_PLACES_HOME,
     PET_ICONS: {
         BIRD,
         BUNNY,

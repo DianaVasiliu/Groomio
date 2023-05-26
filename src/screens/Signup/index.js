@@ -73,18 +73,19 @@ const Signup = ({ signUp }) => {
             {/* BUTTON VIEWS */}
             <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={createAccount} style={styles.button}>
-                    <Text style={styles.buttonText}>Sign Up</Text>
+                    <Text style={styles.buttonText}>SIGNUP</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {
-                        navigation.navigate(SCREENS.LOGIN);
-                    }}>
+                <View style={styles.alreadyHaveAccountContainer}>
                     <Text style={styles.simpleText}>
                         Already have an account?
-                        <Text> </Text>
-                        <Text style={styles.simpleButtonText}>Sign In</Text>
                     </Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate(SCREENS.LOGIN);
+                        }}>
+                        <Text style={styles.simpleButtonText}>Login</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </KeyboardAvoidingView>
     );

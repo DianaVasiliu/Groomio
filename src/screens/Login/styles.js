@@ -24,8 +24,16 @@ export const styles = StyleSheet.create({
         color: "black",
         fontWeight: 500,
         fontSize: 14,
-        marginTop: 35,
         textAlign: "center",
+        alignItems: "center",
+    },
+
+    dontHaveAccountContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 5,
+        marginTop: 20,
     },
 
     inputContainer: { width: "90%", gap: 10 },
@@ -72,7 +80,6 @@ export const styles = StyleSheet.create({
         color: "#A3C7F1",
         fontWeight: "700",
         fontSize: 16,
-        marginTop: 5,
         alignSelf: "flex-end",
     },
 });

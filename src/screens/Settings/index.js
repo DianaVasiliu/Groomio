@@ -1,12 +1,13 @@
 import React from "react";
-import { Text } from "react-native";
 
 import SafeAreaScreen from "../SafeAreaScreen";
+import { ComingSoon, ScreenTitle } from "../../components/small";
 
 const Settings = () => {
     return (
         <SafeAreaScreen>
-            <Text>Settings</Text>
+            <ScreenTitle title="Settings" hasBackButton />
+            <ComingSoon />
         </SafeAreaScreen>
     );
 };

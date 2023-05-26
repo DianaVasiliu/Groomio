@@ -9,8 +9,8 @@ import SafeAreaScreen from "../SafeAreaScreen";
 const Profile = ({ user, logout }) => {
     const { t } = useTranslation();
 
-    const signout = () => {
-        logout();
+    const signout = async () => {
+        await logout();
     };
 
     return (
