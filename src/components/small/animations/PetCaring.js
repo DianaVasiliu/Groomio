@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { View } from "native-base";
 import LottieView from "lottie-react-native";
 
@@ -20,13 +20,17 @@ const PetCaring = () => {
 
     return (
         <View style={styles.container}>
-            <LottieView
-                ref={animationRef}
-                autoPlay
-                loop
-                source={animationData}
-                style={styles.animation}
-            />
+            {Platform.OS === "android" ? (
+                <></>
+            ) : (
+                <LottieView
+                    ref={animationRef}
+                    autoPlay
+                    loop
+                    source={animationData}
+                    style={styles.animation}
+                />
+            )}
         </View>
     );
 };

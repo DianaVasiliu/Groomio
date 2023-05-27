@@ -42,6 +42,7 @@ const GeneralContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 30px;
+    gap: 10px;
 `;
 const AppointmentText = styled.Text`
     font-weight: bold;
@@ -82,6 +83,7 @@ const DevelopmentContainer = styled.TouchableOpacity`
     justify-content: space-between;
     border-radius: 15px;
     gap: 10px;
+    flex: 1;
 `;
 const CommunityContainer = styled.View`
     background-color: #eeeeee;
@@ -121,15 +123,15 @@ const Home = ({ currentUser, appointments }) => {
                 <ProfileContainer>
                     <WelcomeContainer>
                         <WelcomeText>Welcome back,</WelcomeText>
-                        <Name>{currentUser.fullName}</Name>
+                        <Name>{currentUser?.fullName}</Name>
                     </WelcomeContainer>
                     <TouchableOpacity
                         activeOpacity={0.7}
                         onPress={() => navigation.navigate(SCREENS.PROFILE)}>
-                        {currentUser.profileUrl ? (
+                        {currentUser?.profileUrl ? (
                             <ProfilePicture
                                 source={{
-                                    uri: currentUser.profileUrl,
+                                    uri: currentUser?.profileUrl,
                                 }}></ProfilePicture>
                         ) : (
                             <View style={styles.profileNoPhotoContainer}>
@@ -207,13 +209,13 @@ const Home = ({ currentUser, appointments }) => {
                     <DevelopmentContainer
                         onPress={() => navigation.navigate(SCREENS.QUICK_INFO)}>
                         <Image
-                            style={{ width: 50, height: 50 }}
+                            style={{ aspectRatio: 1, flex: 1 }}
                             source={IMAGES.RESOURCES_HOME}></Image>
                         <Text
                             style={{
                                 color: "white",
                                 fontWeight: "bold",
-                                fontSize: 18,
+                                fontSize: 16,
                             }}>
                             Resources
                         </Text>
@@ -221,13 +223,13 @@ const Home = ({ currentUser, appointments }) => {
                     <DevelopmentContainer
                         onPress={() => navigation.navigate(SCREENS.QUICK_INFO)}>
                         <Image
-                            style={{ width: 35, height: 35 }}
+                            style={{ aspectRatio: 1, flex: 1 }}
                             source={IMAGES.DOG_HOME}></Image>
                         <Text
                             style={{
                                 color: "white",
                                 fontWeight: "bold",
-                                fontSize: 18,
+                                fontSize: 16,
                             }}>
                             Training Tips
                         </Text>

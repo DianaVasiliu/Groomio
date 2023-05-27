@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Modal, View } from "native-base";
 import LottieView from "lottie-react-native";
 
@@ -24,13 +24,17 @@ const LoadingIndicator = ({ isLoading }) => {
             <Modal.Content style={styles.modalContent}>
                 <Modal.Body>
                     <View style={styles.container}>
-                        <LottieView
-                            ref={animationRef}
-                            autoPlay
-                            loop
-                            source={animationData}
-                            style={styles.animation}
-                        />
+                        {Platform.OS === "android" ? (
+                            <></>
+                        ) : (
+                            <LottieView
+                                ref={animationRef}
+                                autoPlay
+                                loop
+                                source={animationData}
+                                style={styles.animation}
+                            />
+                        )}
                     </View>
                 </Modal.Body>
             </Modal.Content>

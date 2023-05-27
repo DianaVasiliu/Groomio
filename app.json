@@ -13,16 +13,36 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "infoPlist": {
+                "UIBackgroundModes": [
+                    "location",
+                    "fetch"
+                ],
+                "NSLocationAlwaysAndWhenInUseUsageDescription": "We are using your location to determine the best places near you",
+                "NSLocationWhenInUseUsageDescription": "We are using your location to determine the best places near you",
+                "NSLocationAlwaysUsageDescription": "We are using your location to determine the best places near you"
+            }
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
-            }
+            },
+            "permissions": [
+                "ACCESS_BACKGROUND_LOCATION"
+            ]
         },
         "web": {
             "favicon": "./assets/favicon.png"
-        }
+        },
+        "plugins": [
+            [
+                "expo-location",
+                {
+                "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+                }
+            ]
+        ]
     }
 }

@@ -4,17 +4,9 @@ import styled from "styled-components/native";
 import { ScrollView, Text, View } from "native-base";
 
 import { styles } from "./styles";
-import SafeAreaScreen from "../SafeAreaScreen";
 import { SCREENS } from "../../utils/constants";
 import { PetCaring } from "../../components/small/animations";
 import { colors } from "../../theme";
-
-const Title = styled.Text`
-    color: ${colors.secondary[400]};
-    font-size: 45px;
-    text-align: center;
-    font-weight: bold;
-`;
 
 const Button = styled.TouchableOpacity`
     width: 85%;

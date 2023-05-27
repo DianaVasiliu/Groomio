@@ -1,6 +1,7 @@
 import BackArrowIcon from "./BackArrowIcon";
 import CalendarIcon from "./CalendarIcon";
 import CheckIcon from "./CheckIcon";
+import DirectionsIcon from "./DirectionsIcon";
 import DownArrowIcon from "./DownArrowIcon";
 import FemaleSymbolIcon from "./FemaleSymbolIcon";
 import HomeFillIcon from "./HomeFillIcon";
@@ -18,6 +19,7 @@ import PlusIcon from "./PlusIcon";
 import ProfileFillIcon from "./ProfileFillIcon";
 import ProfileOutlineIcon from "./ProfileOutlineIcon";
 import SearchIcon from "./SearchIcon";
+import StarIcon from "./StarIcon";
 import UpArrowIcon from "./UpArrowIcon";
 import ViewCarouselIcon from "./ViewCarouselIcon";
 import ViewGridIcon from "./ViewGridIcon";
@@ -26,6 +28,7 @@ export {
     BackArrowIcon,
     CalendarIcon,
     CheckIcon,
+    DirectionsIcon,
     DownArrowIcon,
     FemaleSymbolIcon,
     HomeFillIcon,
@@ -43,6 +46,7 @@ export {
     ProfileFillIcon,
     ProfileOutlineIcon,
     SearchIcon,
+    StarIcon,
     UpArrowIcon,
     ViewCarouselIcon,
     ViewGridIcon,
