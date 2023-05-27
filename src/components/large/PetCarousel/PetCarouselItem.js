@@ -1,9 +1,10 @@
 import React from "react";
-import { Image, Text, View } from "native-base";
+import { Text, View } from "native-base";
 
 import { carouselItemStyles } from "./styles";
 import { FemaleSymbolIcon, MaleSymbolIcon } from "../../icons";
 import { colors } from "../../../theme";
+import { Image } from "react-native";
 
 const PetCarouselItem = ({ item, width, hasShadow }) => {
     const isMale = item.gender.charAt(0).toLowerCase() === "m";

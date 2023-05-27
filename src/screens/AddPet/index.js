@@ -18,7 +18,7 @@ import {
     ScreenTitle,
 } from "../../components/small";
 import { FemaleSymbolIcon, MaleSymbolIcon } from "../../components/icons";
-import { ToastAlert } from "../../components/medium";
+import { ToastAlert, CustomImagePicker } from "../../components/medium";
 import { colors } from "../../theme";
 import { styles } from "./styles";
 import { addPet } from "../../redux/actions/user";
@@ -27,6 +27,7 @@ const AddPet = ({ addPetToCurrentUser }) => {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const [loading, setLoading] = useState(false);
+    const [image, setImage] = useState(null);
 
     const genders = [
         {
@@ -63,7 +64,7 @@ const AddPet = ({ addPetToCurrentUser }) => {
 
     const onSubmit = async values => {
         setLoading(true);
-        addPetToCurrentUser(values)
+        addPetToCurrentUser(values, image)
             .then(() => {
                 setLoading(false);
                 Toast.show({
@@ -76,7 +77,8 @@ const AddPet = ({ addPetToCurrentUser }) => {
                 });
                 navigation.goBack();
             })
-            .catch(() => {
+            .catch(e => {
+                console.error(e);
                 setLoading(false);
                 Toast.show({
                     render: () => (
@@ -202,6 +204,8 @@ const AddPet = ({ addPetToCurrentUser }) => {
                             </View>
                         </View>
 
+                        <CustomImagePicker image={image} onChange={setImage} />
+
                         <CustomButton
                             text={t("add")}
                             onPress={handleSubmit}
@@ -220,7 +224,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addPetToCurrentUser: info => dispatch(addPet(info)),
+        addPetToCurrentUser: (info, img) => dispatch(addPet(info, img)),
     };
 };
 

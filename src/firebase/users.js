@@ -33,7 +33,8 @@ const addPetToCurrentUser = async petInfo => {
     const id = auth.currentUser.uid;
     const userRef = doc(db, COLLECTIONS.USERS, id);
     const petsCollection = collection(userRef, COLLECTIONS.PETS);
-    await addDoc(petsCollection, petInfo);
+    const addedDoc = await addDoc(petsCollection, petInfo);
+    return addedDoc.id;
 };
 
 export { addUser, getUserById, addPetToCurrentUser };
