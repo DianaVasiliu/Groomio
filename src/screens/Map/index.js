@@ -5,7 +5,7 @@ import { Text, Toast, View } from "native-base";
 import { useTranslation } from "react-i18next";
 
 import SafeAreaScreen from "../SafeAreaScreen";
-import { ScreenTitle } from "../../components/small";
+import { ScreenTitle, MapTabs } from "../../components/small";
 import { ToastAlert } from "../../components/medium";
 import { styles } from "./styles";
 import { petFriendlyPlaces, petShops, vets } from "./mapData";
@@ -14,8 +14,12 @@ import { colors } from "../../theme";
 
 const Map = () => {
     const { t } = useTranslation();
+    const TABS = [t("vets"), t("pet-shops"), t("pet-friendly-places")];
     const [location, setLocation] = useState(null);
     const [permissionGranted, setPermissionGranted] = useState(false);
+    const [visibleCategories, setVisibleCategories] = useState(
+        Array(TABS.length).fill(true),
+    );
     const mapRef = useRef();
 
     const requestLocationPermissions = async () => {
@@ -90,9 +94,20 @@ const Map = () => {
         );
     };
 
+    const filterPlaces = i => {
+        const newVisible = [...visibleCategories];
+        newVisible[i] = !newVisible[i];
+        setVisibleCategories(newVisible);
+    };
+
     return (
         <SafeAreaScreen>
             <ScreenTitle title="Map" />
+            <MapTabs
+                onSelect={filterPlaces}
+                tabs={TABS}
+                selectedTabs={visibleCategories}
+            />
             <View style={styles.mapViewContainer}>
                 <MapView
                     ref={mapRef}
@@ -112,20 +127,23 @@ const Map = () => {
                               }
                             : null
                     }>
-                    {vets.map((vet, i) =>
-                        placeMarker(vet, i, colors.primary[100], t("vet")),
-                    )}
-                    {petShops.map((vet, i) =>
-                        placeMarker(vet, i, colors.pink, t("pet-shop")),
-                    )}
-                    {petFriendlyPlaces.map((vet, i) =>
-                        placeMarker(
-                            vet,
-                            i,
-                            colors.secondary[300],
-                            t("pet-friendly-place"),
-                        ),
-                    )}
+                    {visibleCategories[0] &&
+                        vets.map((vet, i) =>
+                            placeMarker(vet, i, colors.primary[100], t("vet")),
+                        )}
+                    {visibleCategories[1] &&
+                        petShops.map((vet, i) =>
+                            placeMarker(vet, i, colors.pink, t("pet-shop")),
+                        )}
+                    {visibleCategories[2] &&
+                        petFriendlyPlaces.map((vet, i) =>
+                            placeMarker(
+                                vet,
+                                i,
+                                colors.secondary[300],
+                                t("pet-friendly-place"),
+                            ),
+                        )}
                 </MapView>
             </View>
         </SafeAreaScreen>

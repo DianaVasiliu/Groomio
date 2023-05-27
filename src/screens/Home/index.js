@@ -11,21 +11,7 @@ import { IMAGES } from "../../utils/images";
 import { colors } from "../../theme";
 import { PawFillIcon, ProfileFillIcon } from "../../components/icons";
 import { styles } from "./styles";
-
-const Places = [
-    {
-        title: "Pet Shops",
-        image: IMAGES.STORE_HOME,
-    },
-    {
-        title: "Vets",
-        image: IMAGES.MEDICINE_HOME,
-    },
-    {
-        title: "Pet Friendly Places",
-        image: IMAGES.PET_FRIENDLY_PLACES_HOME,
-    },
-];
+import { useTranslation } from "react-i18next";
 
 const Container = styled.View`
     padding-horizontal: 5%;
@@ -117,6 +103,23 @@ const SectionTitle = styled.Text`
 
 const Home = ({ currentUser, appointments }) => {
     const navigation = useNavigation();
+    const { t } = useTranslation();
+
+    const Places = [
+        {
+            title: t("pet-shops"),
+            image: IMAGES.STORE_HOME,
+        },
+        {
+            title: t("vets"),
+            image: IMAGES.MEDICINE_HOME,
+        },
+        {
+            title: t("pet-friendly-places"),
+            image: IMAGES.PET_FRIENDLY_PLACES_HOME,
+        },
+    ];
+
     return (
         <SafeAreaScreen>
             <Container>
