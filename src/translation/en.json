@@ -32,5 +32,6 @@
     "add": "Add",
     "required": "Required",
     "pet-added-successfully": "Pet added successfully",
-    "pet-could-not-add": "Could not add pet"
+    "pet-could-not-add": "Could not add pet",
+    "pick-image": "Pick an image"
 }

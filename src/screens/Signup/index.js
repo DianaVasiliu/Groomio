@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { styles } from "./styles";
 import { signup } from "../../redux/actions/auth";
 
-import { View, KeyboardAvoidingView, TextInput, Image } from "react-native";
+import { View, KeyboardAvoidingView, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
 import Logo from "../../../assets/icon.png";

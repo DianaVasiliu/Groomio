@@ -16,14 +16,12 @@ const CustomImagePicker = ({ image, onChange }) => {
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [3, 4],
-            quality: 0.8,
-            base64: true,
+            quality: 0.7,
         });
 
         const img = result?.assets ? result.assets[0] : null;
         const uri = img?.uri;
-        const base64 = img?.base64;
-        onChange({ uri, base64 });
+        onChange({ uri });
     };
 
     return (
