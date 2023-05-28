@@ -1,59 +1,50 @@
 import React from "react";
-import { View, Text, Button, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import { useTranslation } from "react-i18next";
 
 import { logout as logoutAction } from "../../redux/actions/auth";
 import SafeAreaScreen from "../SafeAreaScreen";
 
 import { styles } from "./styles";
-import ProfileImage from "../../../assets/images/profile-images/Profile-Image.png";
 import { SCREENS } from "../../utils/constants";
-import LogoutIcon from "../../../assets/images/profile-images/Logout.png";
+import { ScreenTitle } from "../../components/small";
+import { LogoutIcon, ProfileFillIcon } from "../../components/icons";
+import { colors } from "../../theme";
 
 const Profile = ({ user, logout, navigation }) => {
-    const { t } = useTranslation();
-
     const signout = async () => {
         await logout();
-    };
-
-    const handleBackPress = () => {
-        navigation.goBack();
     };
 
     return (
         <SafeAreaScreen>
             <View>
-                <View style={styles.header}>
-                    <View style={styles.headercircle}>
-                        <TouchableOpacity onPress={handleBackPress}>
-                            <Image
-                                source={require("../../../assets/images/profile-images/Back.png")}
-                                style={styles.headerCircleIcon}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <Text style={styles.heading}>Profile</Text>
-                </View>
+                <ScreenTitle hasBackButton title="Profile" />
                 <View style={styles.profileContainer}>
-                    <View style={styles.avatarContainer}>
-                        <Image
-                            source={ProfileImage}
-                            style={styles.avatar}
-                            resizeMode="contain"
-                        />
+                    <View style={styles.avatarImageContainer}>
+                        {user?.photoUrl ? (
+                            <Image
+                                source={{ uri: user.photoUrl }}
+                                style={styles.avatar}
+                                resizeMode="contain"
+                            />
+                        ) : (
+                            <ProfileFillIcon color={colors.grey[900]} />
+                        )}
+                    </View>
+                    <View style={{ flex: 1 }}>
                         <Text style={styles.profileText}>
-                            Welcome back, {"\n"} {user.email}
+                            Welcome back,{" "}
+                            <Text style={styles.profileTextSmall}>
+                                {user.email}
+                            </Text>
                         </Text>
+                    </View>
+                    <View style={{ alignSelf: "flex-end" }}>
                         <TouchableOpacity
-                            title="Logout"
                             onPress={signout}
                             style={styles.logoutButton}>
-                            <Image
-                                source={require("../../../assets/images/profile-images/Logout.png")}
-                                style={styles.logoutIcon}
-                            />
+                            <LogoutIcon color={colors.primary[400]} size={24} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -134,7 +125,7 @@ const Profile = ({ user, logout, navigation }) => {
                                     style={styles.circleIcon}
                                 />
                             </View>
-                            <Text style={styles.buttonText}>Account</Text>
+                            <Text style={styles.buttonText}>Feedback</Text>
                         </View>
                         <Image
                             source={require("../../../assets/images/profile-images/Arrow.png")}

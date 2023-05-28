@@ -19,17 +19,7 @@ const EditAccount = ({ navigation }) => {
     return (
         <SafeAreaScreen>
             <View>
-                <View style={styles.header}>
-                    <View style={styles.circle}>
-                        <TouchableOpacity onPress={handleBackPress}>
-                            <Image
-                                source={require("../../../assets/images/profile-images/Back.png")}
-                                style={styles.circleIcon}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <Text style={styles.heading}>Account</Text>
-                </View>
+                <ScreenTitle hasBackButton title="Account" />
                 <View style={styles.inputContainer}>
                     <Text style={styles.subheading}>Name</Text>
                     <CustomTextInput
@@ -45,7 +35,7 @@ const EditAccount = ({ navigation }) => {
                     />
                     <Text style={styles.subheading}>Email</Text>
                     <CustomTextInput
-                        placeholder="CurrentEmail"
+                        placeholder="Current Email"
                         // value={password}
                         // onChangeText={text => {
                         //     setPassword(text);

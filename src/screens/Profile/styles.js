@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { colors } from "../../theme";
 
 const { width } = Dimensions.get("window");
 
@@ -25,30 +26,41 @@ export const styles = StyleSheet.create({
     profileContainer: {
         backgroundColor: "#f2f2f2",
         padding: 15,
-        marginBottom: 20,
         marginLeft: 25,
         marginRight: 25,
         borderRadius: 20,
-    },
-    avatarContainer: {
         flexDirection: "row",
         alignItems: "center",
+        gap: 10,
+    },
+    avatarContainer: {},
+    avatarImageContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: colors.white,
+        padding: 20,
+        borderRadius: 100,
+        aspectRatio: 1,
     },
     avatar: {
         width: 70,
         height: 70,
         borderRadius: 10,
-        marginLeft: 15,
     },
     profileText: {
-        marginLeft: 20,
-        fontSize: 16,
         fontWeight: "bold",
-        textAlign: "center",
+        flexWrap: "wrap",
+        fontSize: 18,
+    },
+    profileTextSmall: {
+        fontWeight: "normal",
+        fontSize: 16,
     },
     logoutButton: {
-        marginLeft: "auto",
-        marginRight: 10,
+        backgroundColor: colors.white,
+        padding: 15,
+        borderRadius: 100,
+        alignItems: "center",
     },
     logoutIcon: {
         width: 30,
@@ -57,7 +69,8 @@ export const styles = StyleSheet.create({
     subheading: {
         fontSize: 20,
         fontWeight: "bold",
-        marginBottom: 16,
+        marginTop: 16,
+        marginLeft: 10,
     },
     button: {
         flexDirection: "row",
@@ -84,7 +97,7 @@ export const styles = StyleSheet.create({
         height: 24,
     },
     circle: {
-        padding: 8,
+        padding: 10,
         borderRadius: 30,
         backgroundColor: "#f2f2f2",
         alignItems: "center",
