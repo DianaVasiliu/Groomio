@@ -82,6 +82,7 @@ const DevelopmentContainer = styled.TouchableOpacity`
     justify-content: space-between;
     border-radius: 15px;
     gap: 10px;
+    width: 49.7%;
 `;
 const CommunityContainer = styled.View`
     background-color: #eeeeee;

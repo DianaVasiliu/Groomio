@@ -5,13 +5,18 @@ import { carouselItemStyles } from "./styles";
 import { FemaleSymbolIcon, MaleSymbolIcon } from "../../icons";
 import { colors } from "../../../theme";
 import { Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/core";
+import { SCREENS } from "../../../utils/constants";
 
 const PetCarouselItem = ({ item, width, hasShadow }) => {
     const isMale = item.gender.charAt(0).toLowerCase() === "m";
     const genderColor = isMale ? colors.blue : colors.pink;
 
+    const navigation = useNavigation()
+
     return (
-        <View
+        <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.navigate(SCREENS.PET_PROFILE, {item})}
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
                 ...carouselItemStyles.container,
@@ -44,7 +49,7 @@ const PetCarouselItem = ({ item, width, hasShadow }) => {
                     <FemaleSymbolIcon size={50} color={genderColor} />
                 )}
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
