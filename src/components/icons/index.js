@@ -1,5 +1,6 @@
 import BackArrowIcon from "./BackArrowIcon";
 import CalendarIcon from "./CalendarIcon";
+import CameraIcon from "./CameraIcon";
 import CheckIcon from "./CheckIcon";
 import DirectionsIcon from "./DirectionsIcon";
 import DownArrowIcon from "./DownArrowIcon";
@@ -9,6 +10,7 @@ import HomeFillIcon from "./HomeFillIcon";
 import HomeOutlineIcon from "./HomeOutlineIcon";
 import InfoFillIcon from "./InfoFillIcon";
 import InfoOutlineIcon from "./InfoOutlineIcon";
+import LogoutIcon from "./LogoutIcon";
 import MaleSymbolIcon from "./MaleSymbolIcon";
 import MapFillIcon from "./MapFillIcon";
 import MapOutlineIcon from "./MapOutlineIcon";
@@ -28,6 +30,7 @@ import ViewGridIcon from "./ViewGridIcon";
 export {
     BackArrowIcon,
     CalendarIcon,
+    CameraIcon,
     CheckIcon,
     DirectionsIcon,
     DownArrowIcon,
@@ -37,6 +40,7 @@ export {
     HomeOutlineIcon,
     InfoFillIcon,
     InfoOutlineIcon,
+    LogoutIcon,
     MaleSymbolIcon,
     MapFillIcon,
     MapOutlineIcon,
