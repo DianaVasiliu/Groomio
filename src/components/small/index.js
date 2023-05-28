@@ -8,6 +8,7 @@ import CustomDateTimePicker from "./CustomDateTimePicker";
 import CustomButton from "./CustomButton";
 import ErrorMessage from "./ErrorMessage";
 import ComingSoon from "./ComingSoon";
+import MapTabs from "./MapTabs";
 
 export {
     LoadingIndicator,
@@ -20,4 +21,5 @@ export {
     CustomButton,
     ErrorMessage,
     ComingSoon,
+    MapTabs,
 };

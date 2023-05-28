@@ -33,5 +33,15 @@
     "required": "Required",
     "pet-added-successfully": "Pet added successfully",
     "pet-could-not-add": "Could not add pet",
-    "pick-image": "Pick an image"
+    "pick-image": "Pick an image",
+    "location-access-denied": "Location access denied",
+    "location-access-granted": "Location access granted",
+    "you-can-see-your-location": "You can now see your location on the map and places around you",
+    "you-must-allow-location-access": "You must allow location access to view places near you",
+    "vet": "Veterinary",
+    "pet-friendly-place": "Pet friendly place",
+    "pet-shop": "Pet shop",
+    "vets": "Vets",
+    "pet-friendly-places": "Pet friendly places",
+    "pet-shops": "Pet shops"
 }

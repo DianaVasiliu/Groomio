@@ -29,7 +29,6 @@ const Login = ({ logIn }) => {
             })
             .catch(e => {
                 setLoading(false);
-                console.log(e);
                 if (
                     e.code === "auth/invalid-email" ||
                     e.code === "auth/wrong-password"
