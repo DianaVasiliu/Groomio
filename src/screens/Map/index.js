@@ -3,6 +3,7 @@ import * as Location from "expo-location";
 import MapView, { Callout, Marker } from "react-native-maps";
 import { Text, Toast, View } from "native-base";
 import { useTranslation } from "react-i18next";
+import { Linking, Platform, SafeAreaView } from "react-native";
 
 import { ScreenTitle, MapTabs } from "../../components/small";
 import { ToastAlert } from "../../components/medium";
@@ -10,7 +11,6 @@ import { styles } from "./styles";
 import { petFriendlyPlaces, petShops, vets } from "./mapData";
 import { DirectionsIcon, StarIcon } from "../../components/icons";
 import { colors } from "../../theme";
-import { SafeAreaView } from "react-native";
 import { MAP_LOCATION_TYPES } from "../../utils/constants";
 
 const Map = ({ route }) => {
@@ -115,9 +115,9 @@ const Map = ({ route }) => {
                 <Callout
                     tooltip
                     style={styles.callout}
-                    onPress={() => {
-                        console.log("press");
-                    }}>
+                    onPress={() =>
+                        openAddressOnMap(title, latitude, longitude)
+                    }>
                     <View style={styles.calloutContainer}>
                         <View>
                             <View style={styles.placeTitleContainer}>
@@ -146,6 +146,19 @@ const Map = ({ route }) => {
         const newVisible = { ...visibleCategories };
         newVisible[type] = !newVisible[type];
         setVisibleCategories(newVisible);
+    };
+
+    const openAddressOnMap = (label, lat, lng) => {
+        const scheme = Platform.select({
+            ios: "maps:0,0?q=",
+            android: "geo:0,0?q=",
+        });
+        const latLng = `${lat},${lng}`;
+        const url = Platform.select({
+            ios: `${scheme}${encodeURIComponent(label)}@${latLng}`,
+            android: `${scheme}${latLng}(${encodeURIComponent(label)})`,
+        });
+        Linking.openURL(url);
     };
 
     return (
