@@ -6,20 +6,29 @@ import { CheckIcon } from "../icons";
 
 const MapTabs = ({ tabs, selectedTabs, onSelect }) => {
     return (
-        <View>
+        <View style={styles.parentContainer}>
             <FlatList
                 data={tabs}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 style={styles.container}
                 contentContainerStyle={styles.itemsContainer}
-                renderItem={({ item, index }) => {
+                renderItem={({ item }) => {
                     return (
                         <TouchableOpacity
                             style={styles.tabContainer}
-                            onPress={() => onSelect(index)}>
-                            <Text>{item}</Text>
-                            {selectedTabs[index] && <CheckIcon />}
+                            onPress={() => onSelect(item.type)}>
+                            <Text style={styles.tabText} fontSize={16}>
+                                {item.name}
+                            </Text>
+                            {selectedTabs[item.type] && (
+                                <View style={styles.checkIconContainer}>
+                                    <CheckIcon
+                                        color={colors.secondary[600]}
+                                        size={20}
+                                    />
+                                </View>
+                            )}
                         </TouchableOpacity>
                     );
                 }}
@@ -29,6 +38,9 @@ const MapTabs = ({ tabs, selectedTabs, onSelect }) => {
 };
 
 const styles = StyleSheet.create({
+    parentContainer: {
+        minHeight: 40,
+    },
     container: {
         flex: 1,
     },
@@ -36,14 +48,24 @@ const styles = StyleSheet.create({
         gap: 10,
         paddingHorizontal: 10,
     },
+    checkIconContainer: {
+        backgroundColor: colors.white,
+        borderRadius: 100,
+        padding: 2,
+        aspectRatio: 1,
+    },
     tabContainer: {
-        padding: 10,
+        padding: 7,
         paddingHorizontal: 20,
         backgroundColor: colors.primary[400],
         borderRadius: 100,
         flexDirection: "row",
-        gap: 5,
+        gap: 10,
         alignItems: "center",
+    },
+    tabText: {
+        color: colors.white,
+        fontWeight: "bold",
     },
 });
 

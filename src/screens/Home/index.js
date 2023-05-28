@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 import { Image } from "expo-image";
 
 import SafeAreaScreen from "../SafeAreaScreen";
-import { SCREENS } from "../../utils/constants";
+import { MAP_LOCATION_TYPES, SCREENS } from "../../utils/constants";
 import { IMAGES } from "../../utils/images";
 import { colors } from "../../theme";
 import { PawFillIcon, ProfileFillIcon } from "../../components/icons";
@@ -79,6 +79,7 @@ const CommunityContainer = styled.View`
     width: 100%;
     padding-horizontal: 20px;
     border-radius: 15px;
+    gap: 20px;
 `;
 
 const WelcomeText = styled.Text`
@@ -105,18 +106,21 @@ const Home = ({ currentUser, appointments }) => {
     const navigation = useNavigation();
     const { t } = useTranslation();
 
-    const Places = [
+    const PLACES = [
         {
             title: t("pet-shops"),
             image: IMAGES.STORE_HOME,
+            type: MAP_LOCATION_TYPES.PET_SHOPS,
         },
         {
             title: t("vets"),
             image: IMAGES.MEDICINE_HOME,
+            type: MAP_LOCATION_TYPES.VETS,
         },
         {
             title: t("pet-friendly-places"),
             image: IMAGES.PET_FRIENDLY_PLACES_HOME,
+            type: MAP_LOCATION_TYPES.PET_FRIENDLY_PLACES,
         },
     ];
 
@@ -135,7 +139,8 @@ const Home = ({ currentUser, appointments }) => {
                             <ProfilePicture
                                 source={{
                                     uri: currentUser?.profileUrl,
-                                }}></ProfilePicture>
+                                }}
+                            />
                         ) : (
                             <View style={styles.profileNoPhotoContainer}>
                                 <ProfileFillIcon
@@ -168,7 +173,8 @@ const Home = ({ currentUser, appointments }) => {
                         onPress={() => navigation.navigate(SCREENS.CALENDAR)}>
                         <Image
                             style={{ width: 50, height: 50 }}
-                            source={IMAGES.CALENDAR_HOME}></Image>
+                            source={IMAGES.CALENDAR_HOME}
+                        />
                     </Calendar>
                 </GeneralContainer>
 
@@ -182,7 +188,7 @@ const Home = ({ currentUser, appointments }) => {
                         gap: 30,
                         flex: 1,
                     }}>
-                    {Places.map((place, id) => (
+                    {PLACES.map((place, id) => (
                         <View style={{ flex: 1 }} key={id}>
                             <TouchableOpacity
                                 style={{
@@ -194,14 +200,17 @@ const Home = ({ currentUser, appointments }) => {
                                     aspectRatio: 1,
                                 }}
                                 onPress={() =>
-                                    navigation.navigate(SCREENS.MAP)
+                                    navigation.navigate(SCREENS.MAP, {
+                                        filter: place.type,
+                                    })
                                 }>
                                 <Image
                                     style={{
                                         height: 70,
                                         aspectRatio: 1,
                                     }}
-                                    source={place.image}></Image>
+                                    source={place.image}
+                                />
                             </TouchableOpacity>
                             <PlaceTitle>{place.title}</PlaceTitle>
                         </View>
@@ -213,7 +222,8 @@ const Home = ({ currentUser, appointments }) => {
                         onPress={() => navigation.navigate(SCREENS.QUICK_INFO)}>
                         <Image
                             style={{ aspectRatio: 1, flex: 1 }}
-                            source={IMAGES.RESOURCES_HOME}></Image>
+                            source={IMAGES.RESOURCES_HOME}
+                        />
                         <Text
                             style={{
                                 color: "white",
@@ -227,7 +237,8 @@ const Home = ({ currentUser, appointments }) => {
                         onPress={() => navigation.navigate(SCREENS.QUICK_INFO)}>
                         <Image
                             style={{ aspectRatio: 1, flex: 1 }}
-                            source={IMAGES.DOG_HOME}></Image>
+                            source={IMAGES.DOG_HOME}
+                        />
                         <Text
                             style={{
                                 color: "white",
@@ -241,9 +252,9 @@ const Home = ({ currentUser, appointments }) => {
 
                 <GeneralContainer>
                     <CommunityContainer>
-                        <View style={{ paddingVertical: 30 }}>
+                        <View style={{ paddingVertical: 30, flex: 2 }}>
                             <Text style={{ fontWeight: "bold", fontSize: 20 }}>
-                                Join our amazing {"\n"}Pet Community!
+                                Join our amazing Pet Community!
                             </Text>
 
                             <TouchableOpacity
@@ -268,8 +279,9 @@ const Home = ({ currentUser, appointments }) => {
                             </TouchableOpacity>
                         </View>
                         <Image
-                            style={{ width: 100, height: 120 }}
-                            source={IMAGES.COMMUNITY_HOME}></Image>
+                            style={{ width: 100, height: 120, flex: 1 }}
+                            source={IMAGES.COMMUNITY_HOME}
+                        />
                     </CommunityContainer>
                 </GeneralContainer>
             </Container>

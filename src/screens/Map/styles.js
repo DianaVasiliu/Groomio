@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../theme";
 
 export const styles = StyleSheet.create({
+    safeAreaView: { flex: 1 },
     mapViewContainer: {
         borderRadius: 10,
         overflow: "hidden",

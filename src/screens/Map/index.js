@@ -4,23 +4,55 @@ import MapView, { Callout, Marker } from "react-native-maps";
 import { Text, Toast, View } from "native-base";
 import { useTranslation } from "react-i18next";
 
-import SafeAreaScreen from "../SafeAreaScreen";
 import { ScreenTitle, MapTabs } from "../../components/small";
 import { ToastAlert } from "../../components/medium";
 import { styles } from "./styles";
 import { petFriendlyPlaces, petShops, vets } from "./mapData";
 import { DirectionsIcon, StarIcon } from "../../components/icons";
 import { colors } from "../../theme";
+import { SafeAreaView } from "react-native";
+import { MAP_LOCATION_TYPES } from "../../utils/constants";
 
-const Map = () => {
+const Map = ({ route }) => {
     const { t } = useTranslation();
-    const TABS = [t("vets"), t("pet-shops"), t("pet-friendly-places")];
+    const mapRef = useRef();
+    const LOCATIONS = [
+        {
+            name: t("vets"),
+            itemName: t("vet"),
+            data: vets,
+            type: MAP_LOCATION_TYPES.VETS,
+            color: colors.primary[600],
+        },
+        {
+            name: t("pet-shops"),
+            itemName: t("pet-shop"),
+            data: petShops,
+            type: MAP_LOCATION_TYPES.PET_SHOPS,
+            color: colors.secondary[600],
+        },
+        {
+            name: t("pet-friendly-places"),
+            itemName: t("pet-friendly-place"),
+            data: petFriendlyPlaces,
+            type: MAP_LOCATION_TYPES.PET_FRIENDLY_PLACES,
+            color: colors.pink,
+        },
+    ];
+
+    const fillVisibleCategoriesObject = value => {
+        const vis = {};
+        LOCATIONS.forEach(loc => {
+            vis[loc.type] = value;
+        });
+        return vis;
+    };
+
     const [location, setLocation] = useState(null);
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [visibleCategories, setVisibleCategories] = useState(
-        Array(TABS.length).fill(true),
+        fillVisibleCategoriesObject(true),
     );
-    const mapRef = useRef();
 
     const requestLocationPermissions = async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
@@ -37,15 +69,6 @@ const Map = () => {
             return;
         }
 
-        Toast.show({
-            render: () => (
-                <ToastAlert
-                    title={t("location-access-granted")}
-                    description={t("you-can-see-your-location")}
-                    status="success"
-                />
-            ),
-        });
         setPermissionGranted(true);
 
         const loc = await Location.getCurrentPositionAsync();
@@ -53,9 +76,34 @@ const Map = () => {
         // mapRef.current.animateToRegion(loc.coords, 1000);
     };
 
+    const filterRouting = () => {
+        if (route.params) {
+            const { filter } = route.params;
+            let filteredLocations = fillVisibleCategoriesObject(false);
+            switch (filter) {
+                case MAP_LOCATION_TYPES.VETS:
+                    filteredLocations[MAP_LOCATION_TYPES.VETS] = true;
+                    break;
+                case MAP_LOCATION_TYPES.PET_SHOPS:
+                    filteredLocations[MAP_LOCATION_TYPES.PET_SHOPS] = true;
+                    break;
+                case MAP_LOCATION_TYPES.PET_FRIENDLY_PLACES:
+                    filteredLocations[
+                        MAP_LOCATION_TYPES.PET_FRIENDLY_PLACES
+                    ] = true;
+                    break;
+            }
+            setVisibleCategories(filteredLocations);
+        }
+    };
+
     useEffect(() => {
         requestLocationPermissions();
     }, []);
+
+    useEffect(() => {
+        filterRouting();
+    }, [route]);
 
     const placeMarker = (vet, i, color, type) => {
         const { title, rating, longitude, latitude } = vet;
@@ -94,18 +142,18 @@ const Map = () => {
         );
     };
 
-    const filterPlaces = i => {
-        const newVisible = [...visibleCategories];
-        newVisible[i] = !newVisible[i];
+    const filterPlaces = type => {
+        const newVisible = { ...visibleCategories };
+        newVisible[type] = !newVisible[type];
         setVisibleCategories(newVisible);
     };
 
     return (
-        <SafeAreaScreen>
+        <SafeAreaView style={styles.safeAreaView}>
             <ScreenTitle title="Map" />
             <MapTabs
                 onSelect={filterPlaces}
-                tabs={TABS}
+                tabs={LOCATIONS}
                 selectedTabs={visibleCategories}
             />
             <View style={styles.mapViewContainer}>
@@ -127,26 +175,18 @@ const Map = () => {
                               }
                             : null
                     }>
-                    {visibleCategories[0] &&
-                        vets.map((vet, i) =>
-                            placeMarker(vet, i, colors.primary[100], t("vet")),
-                        )}
-                    {visibleCategories[1] &&
-                        petShops.map((vet, i) =>
-                            placeMarker(vet, i, colors.pink, t("pet-shop")),
-                        )}
-                    {visibleCategories[2] &&
-                        petFriendlyPlaces.map((vet, i) =>
-                            placeMarker(
-                                vet,
-                                i,
-                                colors.secondary[300],
-                                t("pet-friendly-place"),
-                            ),
-                        )}
+                    {LOCATIONS.map(loc => {
+                        const { data, color, itemName, type } = loc;
+                        return (
+                            visibleCategories[type] &&
+                            data.map((item, i) =>
+                                placeMarker(item, i, color, itemName),
+                            )
+                        );
+                    })}
                 </MapView>
             </View>
-        </SafeAreaScreen>
+        </SafeAreaView>
     );
 };
 
