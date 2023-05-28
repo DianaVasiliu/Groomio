@@ -2,6 +2,7 @@ import BackArrowIcon from "./BackArrowIcon";
 import CalendarIcon from "./CalendarIcon";
 import CheckIcon from "./CheckIcon";
 import DownArrowIcon from "./DownArrowIcon";
+import EditIcon from "./EditIcon";
 import FemaleSymbolIcon from "./FemaleSymbolIcon";
 import HomeFillIcon from "./HomeFillIcon";
 import HomeOutlineIcon from "./HomeOutlineIcon";
@@ -27,6 +28,7 @@ export {
     CalendarIcon,
     CheckIcon,
     DownArrowIcon,
+    EditIcon,
     FemaleSymbolIcon,
     HomeFillIcon,
     HomeOutlineIcon,

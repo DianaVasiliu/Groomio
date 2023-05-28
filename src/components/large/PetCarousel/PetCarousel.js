@@ -19,6 +19,7 @@ const PetCarousel = ({ data }) => {
     const [index, setIndex] = useState(0);
     const scrollXIndex = useRef(new Animated.Value(0)).current;
     const scrollXAnimated = useRef(new Animated.Value(0)).current;
+    const [currentIndex, setCurrentIndex] = useState(scrollXIndex._value);
     const VISIBLE_ITEMS = 3;
 
     useEffect(() => {
@@ -51,6 +52,8 @@ const PetCarousel = ({ data }) => {
                     if (e.nativeEvent.state === State.END) {
                         if (index === data.length - 1) return;
                         setActiveIndex(index + 1);
+                    } else if (e.nativeEvent.state === State.BEGAN) {
+                        setCurrentIndex(scrollXIndex._value);
                     }
                 }}>
                 <FlingGestureHandler
@@ -60,6 +63,7 @@ const PetCarousel = ({ data }) => {
                         if (e.nativeEvent.state === State.END) {
                             if (index === 0) return;
                             setActiveIndex(index - 1);
+                            setCurrentIndex(scrollXIndex._value);
                         }
                     }}>
                     <View style={carouselStyles.container}>
@@ -97,7 +101,7 @@ const PetCarousel = ({ data }) => {
                                 });
                                 const scale = scrollXAnimated.interpolate({
                                     inputRange,
-                                    outputRange: [0.9, 1, 1.2],
+                                    outputRange: [0.9, 1, 0],
                                 });
                                 const opacity =
                                     i >= index
@@ -111,23 +115,27 @@ const PetCarousel = ({ data }) => {
                                               ],
                                           });
 
+                                const isVisible = i >= currentIndex;
+
                                 return (
-                                    <Animated.View
-                                        style={{
-                                            ...carouselStyles.card,
-                                            left: -ITEM_WIDTH / 2,
-                                            opacity,
-                                            transform: [
-                                                { translateX },
-                                                { scale },
-                                            ],
-                                        }}>
-                                        <PetCarouselItem
-                                            item={item}
-                                            width={ITEM_WIDTH}
-                                            hasShadow={i >= index}
-                                        />
-                                    </Animated.View>
+                                    isVisible && (
+                                        <Animated.View
+                                            style={{
+                                                ...carouselStyles.card,
+                                                left: -ITEM_WIDTH / 2,
+                                                opacity,
+                                                transform: [
+                                                    { translateX },
+                                                    { scale },
+                                                ],
+                                            }}>
+                                            <PetCarouselItem
+                                                item={item}
+                                                width={ITEM_WIDTH}
+                                                hasShadow={i >= index}
+                                            />
+                                        </Animated.View>
+                                    )
                                 );
                             }}
                         />
