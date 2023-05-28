@@ -25,4 +25,10 @@ const SCREENS = {
     CALENDAR: "Calendar",
 };
 
-export { defaultIconProps, SCREENS };
+const MAP_LOCATION_TYPES = {
+    PET_SHOPS: "PET_SHOPS",
+    VETS: "VETS",
+    PET_FRIENDLY_PLACES: "PET_FRIENDLY_PLACES",
+};
+
+export { defaultIconProps, SCREENS, MAP_LOCATION_TYPES };

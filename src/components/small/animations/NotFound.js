@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Text, View } from "native-base";
 import { useTranslation } from "react-i18next";
 import LottieView from "lottie-react-native";
@@ -23,13 +23,17 @@ const NotFound = ({ text }) => {
 
     return (
         <View style={styles.container}>
-            <LottieView
-                ref={animationRef}
-                autoPlay
-                loop
-                source={animationData}
-                style={styles.animation}
-            />
+            {Platform.OS === "android" ? (
+                <></>
+            ) : (
+                <LottieView
+                    ref={animationRef}
+                    autoPlay
+                    loop
+                    source={animationData}
+                    style={styles.animation}
+                />
+            )}
             <Text style={styles.text} fontSize="2xl">
                 {text ?? t("not-found")}
             </Text>

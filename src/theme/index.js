@@ -41,6 +41,7 @@ export const colors = {
     pink: "#ED91C4",
     blue: "#69B4E0",
     red: "#F54842",
+    yellow: "#FFD414",
 };
 
 const theme = extendTheme({
